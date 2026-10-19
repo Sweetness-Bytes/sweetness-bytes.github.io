@@ -139,6 +139,25 @@ select{width:100%;appearance:none;-webkit-appearance:none;background:#fff url("d
 .step button:hover{background:var(--cream-2)}
 .step output{min-width:24px;text-align:center;font-weight:600;font-size:.88rem}
 
+/* ---------- coming soon: cakes ---------- */
+.soon-strip{display:block;text-align:center;text-decoration:none;background:linear-gradient(90deg,var(--rose),#b8325a);color:#fff;font-size:.8rem;font-weight:600;padding:9px 16px;letter-spacing:.02em}
+.soon-strip span{text-decoration:underline;text-underline-offset:3px;margin-left:6px;white-space:nowrap}
+.nav .nb{font-size:.6rem;background:var(--rose);color:#fff;border-radius:999px;padding:2px 7px;margin-left:5px;font-weight:600;letter-spacing:.04em;vertical-align:2px}
+.chip.soon{background:linear-gradient(135deg,#fff,#fde7ee);border-color:var(--rose);color:var(--rose)}
+.chip.soon b{font-size:.6rem;background:var(--rose);color:#fff;border-radius:999px;padding:1px 6px;margin-left:5px}
+.cakes{position:relative;overflow:hidden;border-radius:28px;background:var(--deep);color:#fff;text-align:center;padding:56px 22px 52px;box-shadow:0 18px 44px rgba(51,7,21,.35);border:1px solid rgba(201,162,39,.45);isolation:isolate}
+.cakes::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 15% 10%,rgba(217,67,107,.45),transparent 45%),radial-gradient(circle at 90% 95%,rgba(201,162,39,.35),transparent 45%),radial-gradient(circle at 80% 15%,rgba(241,223,168,.12),transparent 30%)}
+.cakes::after{content:"";position:absolute;inset:12px;border:1px dashed rgba(241,223,168,.35);border-radius:20px;pointer-events:none}
+.cakes .ic{width:78px;height:78px;margin:0 auto 18px;color:var(--gold-l);animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.cakes .tag{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--deep);background:linear-gradient(135deg,var(--gold),#E6C65A);padding:8px 18px;border-radius:999px}
+.cakes h2{font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(3.2rem,13vw,7rem);line-height:.95;margin:18px 0 6px;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.35)}
+.cakes h2 em{display:block;font-style:normal;font-family:var(--display);font-weight:700;font-size:.42em;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-l);margin:10px 0 2px}
+.cakes .big{font-family:var(--display);font-weight:700;font-size:clamp(1.35rem,4.6vw,2.2rem);line-height:1.3;color:#fff;max-width:720px;margin:18px auto 0}
+.cakes .big span{color:var(--gold-l)}
+.cakes .stay{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,6vw,2.6rem);color:#ffd6e1;margin-top:10px}
+.cakes .btn{margin-top:26px;padding:14px 26px;font-size:.92rem}
+
 /* ---------- custom / festival ---------- */
 .special{display:grid;grid-template-columns:1fr;gap:14px}
 .sp{position:relative;border-radius:var(--r);overflow:hidden;min-height:230px;display:flex;align-items:flex-end;color:#fff;box-shadow:var(--shadow)}
@@ -281,6 +300,7 @@ body.has-cart .fab{display:none}
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#menu">Menu</a>
+      <a href="#cakes">Cakes &amp; Pastries<span class="nb">SOON</span></a>
       <a href="#special">Custom &amp; Festival</a>
       <a href="#how">How to order</a>
       <a href="#pay">Payment</a>
@@ -294,6 +314,7 @@ body.has-cart .fab{display:none}
 </header>
 
 <main id="top">
+  <a class="soon-strip" href="#cakes">🎂 Cakes &amp; Pastries launching soon!<span>Know more</span></a>
   <div class="hero">
     <div class="bg ph i-mixed" role="img" aria-label="Handmade rose and flower chocolates"></div>
     <div class="hero-in">
@@ -341,6 +362,17 @@ body.has-cart .fab{display:none}
       </div>
       <nav class="chips" id="chips" aria-label="Menu categories"></nav>
       <div id="cats"></div>
+    </section>
+
+    <section id="cakes" aria-labelledby="cakesTitle">
+      <div class="cakes rv">
+        <div class="ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 6c2 3 2 5 0 7-2-2-2-4 0-7z" fill="currentColor"/><path d="M32 14v8"/><path d="M14 30h36a4 4 0 0 1 4 4v6H10v-6a4 4 0 0 1 4-4z"/><path d="M10 40c4 4 8 4 11 0 3 4 8 4 11 0 3 4 8 4 11 0 3 4 7 4 11 0"/><path d="M8 54h48"/><path d="M10 40v14M54 40v14"/><path d="M20 22h24v8H20z"/></svg></div>
+        <div class="tag">Coming soon</div>
+        <h2 id="cakesTitle">Cakes <em>&amp;</em> Pastries</h2>
+        <p class="big">We will be <span>soon launching</span> cakes &amp; pastries.</p>
+        <p class="stay">Stay tuned with us!</p>
+        <a class="btn btn-gold" data-wa="Hi Sweetness! Please let me know when your cakes &amp; pastries launch." href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.75 13.57L3 21l4.56-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 7.6c.3 0 .5.1.6.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.4.4.6 0 1.2-1 2-2.2 2-3.4-.3-6.7-3.6-7-7 0-1.2.8-2.1 2.1-2.1z" fill="currentColor"/></svg>Notify me on WhatsApp</a>
+      </div>
     </section>
 
     <section id="special" aria-labelledby="spTitle">
@@ -535,7 +567,7 @@ function pickItem(it){
   else sel='<div class="picks two"><label>Flavour 1<select data-f="'+it.id+'">'+opts("Dark Chocolate")+'</select></label><label>Flavour 2<select data-f="'+it.id+'">'+opts("Milk Chocolate")+'</select></label></div>';
   return '<div class="item col" data-id="'+it.id+'"><div class="row1"><div class="info"><div class="nm">'+esc(it.name)+'</div><div class="meta">Choose '+(it.pick===1?"a flavour":"two flavours")+'</div><div class="pr">'+rs(it.price)+'</div></div><button class="add" type="button" data-pick="'+it.id+'">'+PLUS+'Add</button></div>'+sel+'<div class="added-msg" data-msg="'+it.id+'"></div></div>';
 }
-$("chips").innerHTML=MENU.map(function(c,i){return '<a class="chip'+(i===0?' on':'')+'" href="#cat-'+c.id+'" data-chip="'+c.id+'">'+esc(c.title.replace(" chocolates","").replace("Chocolate bars with flavours","Chocolate bars"))+'</a>'}).join("");
+$("chips").innerHTML=MENU.map(function(c,i){return '<a class="chip'+(i===0?' on':'')+'" href="#cat-'+c.id+'" data-chip="'+c.id+'">'+esc(c.title.replace(" chocolates","").replace("Chocolate bars with flavours","Chocolate bars"))+'</a>'}).join("")+'<a class="chip soon" href="#cakes">🎂 Cakes &amp; Pastries<b>SOON</b></a>';
 $("cats").innerHTML=MENU.map(function(c){
   return '<div class="cat rv" id="cat-'+c.id+'"><div class="cat-banner"><div class="ph '+c.img+'" role="img" aria-label="'+esc(c.title)+'"></div><div class="t"><h3>'+esc(c.title)+'</h3><span class="note">'+esc(c.note)+'</span><p>'+esc(c.desc)+'</p></div></div><div class="grid">'+
     c.items.map(function(it){return it.pick?pickItem(it):simpleItem(it)}).join("")+'</div></div>';
