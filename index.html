@@ -53,7 +53,7 @@ a{color:inherit}
 .logo-text{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.65rem;line-height:1;color:#fff}
 .logo-text small{display:block;font-family:var(--sans);font-style:normal;font-weight:500;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-l);margin-top:3px}
 .nav{display:none;gap:22px;font-size:.85rem}
-.nav a{text-decoration:none;color:#f6e7d0;opacity:.9}
+.nav a{text-decoration:none;color:#f6e7d0;opacity:.9;white-space:nowrap}
 .nav a:hover{opacity:1;color:var(--gold-l)}
 .cart-btn{position:relative;display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(241,223,168,.5);color:#fff;border-radius:999px;padding:8px 14px;cursor:pointer;font-size:.82rem;font-weight:500}
 .cart-btn svg{width:18px;height:18px}
@@ -157,6 +157,84 @@ select{width:100%;appearance:none;-webkit-appearance:none;background:#fff url("d
 .cakes .big span{color:var(--gold-l)}
 .cakes .stay{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,6vw,2.6rem);color:#ffd6e1;margin-top:10px}
 .cakes .btn{margin-top:26px;padding:14px 26px;font-size:.92rem}
+
+/* ---------- IZYAN popup ---------- */
+.izpop{position:fixed;z-index:35;top:76px;left:12px;right:12px;max-width:460px;margin:0 auto;background:linear-gradient(135deg,#1c0a10,#3a0b1c);color:#fff;border:1px solid var(--gold);border-radius:18px;padding:14px 44px 14px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 16px 40px rgba(0,0,0,.4);transform:translateY(-16px);opacity:0;pointer-events:none;transition:.35s cubic-bezier(.2,.8,.2,1)}
+.izpop.show{transform:none;opacity:1;pointer-events:auto}
+.izpop img{width:58px;height:58px;border-radius:12px;object-fit:cover;flex:0 0 auto;border:1px solid rgba(201,162,39,.6)}
+.izpop .k{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.izpop .h{font-family:var(--serif);font-size:1.25rem;line-height:1.1;margin:2px 0}
+.izpop .h b{letter-spacing:.18em;color:var(--gold-l);font-weight:600}
+.izpop .s{font-size:.72rem;color:#e9d3da}
+.izpop .go{display:inline-block;margin-top:6px;font-size:.74rem;font-weight:600;color:var(--deep);background:linear-gradient(135deg,var(--gold),#E6C65A);border-radius:999px;padding:5px 12px;text-decoration:none}
+.izpop .xx{position:absolute;top:6px;right:6px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;cursor:pointer;font-size:1rem;line-height:1}
+
+/* ---------- IZYAN section ---------- */
+.iz{margin:56px calc(50% - 50vw) 0;background:#140609;color:#f3e6d4;padding:64px 0 56px;position:relative;isolation:isolate;scroll-margin-top:64px}
+.iz::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 50% 0%,rgba(122,20,52,.65),transparent 55%),radial-gradient(circle at 0% 100%,rgba(201,162,39,.12),transparent 40%)}
+.iz .in{max-width:1120px;margin:0 auto;padding:0 16px}
+.iz-head{text-align:center;max-width:720px;margin:0 auto}
+.iz-head .kk{display:inline-block;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,162,39,.5);border-radius:999px;padding:6px 14px;font-weight:600}
+.iz-logo{font-family:var(--serif);font-weight:500;font-size:clamp(3.2rem,14vw,6.4rem);letter-spacing:.32em;margin:18px 0 0 .32em;line-height:1;color:var(--gold-l);background:linear-gradient(180deg,#F6E7B8,#C9A227);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.iz-sub{font-size:.78rem;letter-spacing:.4em;text-transform:uppercase;color:#d9c08a;margin-top:6px}
+.iz-rule{width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:22px auto}
+.iz-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,6vw,3rem);color:#fff;line-height:1.1}
+.iz-head p{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:#d8c3c9;margin-top:6px}
+.iz-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px}
+.iz-pills span{font-size:.72rem;border:1px solid rgba(201,162,39,.35);background:rgba(255,255,255,.04);border-radius:999px;padding:6px 12px;color:#ecdcc2}
+.iz-sizes{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:440px;margin:22px auto 0}
+.iz-sizes div{border:1px solid rgba(201,162,39,.35);border-radius:14px;padding:12px;background:rgba(255,255,255,.03)}
+.iz-sizes b{display:block;font-family:var(--display);color:var(--gold-l);font-size:1.05rem}
+.iz-sizes span{font-size:.72rem;color:#cdb8bf}
+.iz-ctl{position:sticky;top:64px;z-index:15;margin:34px -16px 18px;padding:10px 16px;background:rgba(20,6,9,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:10px;border-bottom:1px solid rgba(201,162,39,.2)}
+.iz-f{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.iz-f::-webkit-scrollbar{display:none}
+.iz-f button{flex:0 0 auto;font-size:.76rem;font-weight:500;padding:7px 14px;border-radius:999px;border:1px solid rgba(201,162,39,.4);background:transparent;color:#ecdcc2;cursor:pointer}
+.iz-f button.on{background:var(--gold);border-color:var(--gold);color:#1c0a10;font-weight:600}
+.iz-s{position:relative}
+.iz-s input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(201,162,39,.35);border-radius:12px;padding:10px 12px 10px 36px;color:#fff;font-size:.86rem}
+.iz-s input::placeholder{color:#a88f97}
+.iz-s svg{position:absolute;left:12px;top:50%;width:16px;height:16px;transform:translateY(-50%);color:var(--gold)}
+.iz-count{font-size:.72rem;color:#b9a1a8}
+.iz-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.izc{background:#1f0b11;border:1px solid rgba(201,162,39,.22);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+.izc.has{border-color:var(--gold)}
+.izc .im{position:relative;aspect-ratio:1;background:#2a0f17}
+.izc .im img{width:100%;height:100%;object-fit:cover}
+.izc .nw{position:absolute;top:8px;left:8px;font-size:.58rem;font-weight:700;letter-spacing:.14em;background:var(--rose);color:#fff;border-radius:999px;padding:3px 8px}
+.izc .bd{padding:10px 10px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.izc .gd{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.izc .nm{font-family:var(--serif);font-weight:600;font-size:1.15rem;line-height:1.1;color:#fff}
+.izc .nt{font-size:.68rem;color:#bfa9b0;line-height:1.35}
+.izc .vs{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:auto}
+.izc .vs button{min-height:36px;border:1px solid rgba(201,162,39,.35);background:transparent;color:#ecdcc2;border-radius:10px;padding:6px 4px;cursor:pointer;line-height:1.2;text-align:center}
+.izc .vs button small{display:block;font-size:.58rem;color:#b9a1a8}
+.izc .vs button b{font-size:.8rem;font-weight:600}
+.izc .vs button.on{background:rgba(201,162,39,.16);border-color:var(--gold);color:#fff}
+.izc .vs button.on small{color:var(--gold-l)}
+.izc .ad{border:none;border-radius:999px;background:linear-gradient(135deg,var(--gold),#E6C65A);color:#1c0a10;font-weight:600;font-size:.78rem;padding:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.izc .ad svg{width:14px;height:14px}
+.izc .ok{font-size:.66rem;color:#7fd8a0;font-weight:600;min-height:1em;text-align:center}
+.iz-more{display:flex;justify-content:center;margin-top:22px}
+.iz-more .btn{background:transparent;border:1px solid var(--gold);color:var(--gold-l)}
+.iz-empty{grid-column:1/-1;text-align:center;color:#b9a1a8;padding:30px 0}
+.iz-foot{text-align:center;font-size:.72rem;color:#9f8890;margin-top:22px;letter-spacing:.04em}
+@media (max-width:400px){
+  .iz-grid{gap:8px}
+  .izc .bd{padding:9px 8px 10px}
+  .izc .nm{font-size:1.05rem}
+  .izc .vs{grid-template-columns:1fr;gap:4px}
+  .izc .vs button{display:flex;justify-content:space-between;align-items:center;gap:4px;padding:6px 7px;white-space:nowrap}
+  .izc .vs button small{display:inline;font-size:.6rem}
+  .izc .vs button b{font-size:.76rem}
+  .izc .ad{font-size:.74rem;white-space:nowrap;padding:9px 6px}
+  .picks.two{grid-template-columns:1fr}
+  .pay .upi,.paybox .upi{padding:10px 8px 10px 12px;flex-wrap:wrap;row-gap:8px}
+  .pay .upi .id,.paybox .upi .id{font-size:.86rem;word-break:normal;white-space:nowrap}
+  .pay{padding:18px}
+}
+@media (min-width:640px){.iz-grid{grid-template-columns:repeat(3,1fr)}.iz-ctl{flex-direction:row;align-items:center;justify-content:space-between}.iz-s{width:260px;flex:0 0 auto}}
+@media (min-width:900px){.iz-grid{grid-template-columns:repeat(4,1fr);gap:16px}.iz-ctl{margin:34px 0 18px;border-radius:16px;border:1px solid rgba(201,162,39,.2)}.izc .bd{padding:12px 12px 14px}}
 
 /* ---------- custom / festival ---------- */
 .special{display:grid;grid-template-columns:1fr;gap:14px}
@@ -300,9 +378,9 @@ body.has-cart .fab{display:none}
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#menu">Menu</a>
-      <a href="#cakes">Cakes &amp; Pastries<span class="nb">SOON</span></a>
-      <a href="#special">Custom &amp; Festival</a>
-      <a href="#how">How to order</a>
+      <a href="#izyan">Attar &amp; Perfumes<span class="nb">NEW</span></a>
+      <a href="#cakes">Cakes<span class="nb">SOON</span></a>
+      <a href="#special">Custom orders</a>
       <a href="#pay">Payment</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -312,6 +390,17 @@ body.has-cart .fab{display:none}
     </button>
   </div>
 </header>
+
+<div class="izpop" id="izpop" role="dialog" aria-label="IZYAN Attar &amp; Perfumes">
+  <img src="izyan/izyan-oud.webp" alt="" width="58" height="58">
+  <div>
+    <div class="k">New · Our in-house brand</div>
+    <div class="h"><b>IZYAN</b> Attar &amp; Perfumes</div>
+    <div class="s">53 long-lasting attars · 12 ml attar &amp; 50 ml perfume</div>
+    <a class="go" href="#izyan" id="izgo">Explore collection →</a>
+  </div>
+  <button class="xx" type="button" id="izx" aria-label="Close">×</button>
+</div>
 
 <main id="top">
   <a class="soon-strip" href="#cakes">🎂 Cakes &amp; Pastries launching soon!<span>Know more</span></a>
@@ -375,6 +464,38 @@ body.has-cart .fab{display:none}
       </div>
     </section>
 
+  </div>
+
+  <section class="iz" id="izyan" aria-labelledby="izTitle">
+    <div class="in">
+      <div class="iz-head">
+        <span class="kk">Our in-house brand</span>
+        <div class="iz-logo">IZYAN</div>
+        <div class="iz-sub">Attar &amp; Perfumes</div>
+        <div class="iz-rule"></div>
+        <h2 id="izTitle">The Attar Collection</h2>
+        <p>Pure, long-lasting attars — crafted to be remembered</p>
+        <div class="iz-pills"><span>✦ Alcohol-free attar oils</span><span>✦ Long-lasting</span><span>✦ 53 fragrances</span><span>✦ Men · Women · Unisex</span></div>
+        <div class="iz-sizes"><div><b>Attar · 12 ml</b><span>Concentrated oil</span></div><div><b>Perfume · 50 ml</b><span>Spray perfume</span></div></div>
+      </div>
+      <div class="iz-ctl">
+        <div class="iz-f" id="izf" role="tablist" aria-label="Filter fragrances">
+          <button type="button" class="on" data-izf="all">All</button>
+          <button type="button" data-izf="new">✨ New arrivals</button>
+          <button type="button" data-izf="Men">Men</button>
+          <button type="button" data-izf="Women">Women</button>
+          <button type="button" data-izf="Unisex">Unisex</button>
+        </div>
+        <label class="iz-s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="izq" type="search" placeholder="Search fragrance or note (e.g. oud, musk)" aria-label="Search fragrances"></label>
+      </div>
+      <div class="iz-count" id="izcount"></div>
+      <div class="iz-grid" id="izgrid" style="margin-top:10px"></div>
+      <div class="iz-more"><button class="btn" type="button" id="izmore">Show all fragrances</button></div>
+      <div class="iz-foot">Prices subject to change · Instagram @izyan.attar</div>
+    </div>
+  </section>
+
+  <div class="container">
     <section id="special" aria-labelledby="spTitle">
       <div class="sec-head">
         <div class="kicker">Made for your moments</div>
@@ -529,7 +650,14 @@ var MENU=[
    ]}
 ];
 var UNIT={single:"6-pc box",double:"6-pc box",bars:"bar"};
+/* IZYAN attar & perfumes: [slug, name, notes, for, attar 12ml price, perfume 50ml price, new] */
+var IZ=[["summer-oud","Summer Oud","Light, Fresh & Oudy","Unisex",770,920,1],["bin-shaikh","Bin Shaikh","Rich, Spicy & Oudy","Men",770,920,1],["creed-aventus","Creed Aventus","Fruity, Smoky & Woody","Men",550,700,1],["imperial-valley","Imperial Valley","Fresh, Aquatic & Clean","Men",550,700,1],["ombre-nomad","Ombre Nomad","Smoky, Rosy & Oudy","Unisex",660,810,1],["desert-oud","Desert Oud","Dry, Woody & Amber","Men",660,810,1],["sports-club","Sports Club","Fresh, Sporty & Energetic","Men",550,700,1],["izyan-oud","Izyan Oud","Fresh, Woody & Oudy","Unisex",880,1030,1],["turkey-oud","Turkey Oud","Intense, Smoky & Oudy","Men",1210,1360,1],["izyan-french-sp","Izyan French SP","Fresh, Fruity & Woody","Unisex",660,810,1],["9pm-afnan","9pm Afnan","Sweet, Spicy & Seductive","Unisex",550,700,0],["aquatic-white","Aquatic White","Fresh, Aquatic & Clean","Unisex",385,535,0],["arabian-oud","Arabian Oud","Woody, Strong & Oudy","Men",1100,1250,0],["aramani-gold","Aramani Gold","Warm, Spicy & Amber","Men",550,700,0],["aurum","Aurum","Golden, Warm & Sweet","Unisex",550,700,0],["azzaro-most-wanted","Azzaro Most Wanted","Bold, Spicy & Woody","Men",550,700,0],["belgium-musk","Belgium Musk","Soft, Musky & Sensual","Men",715,865,0],["black-oud","Black Oud","Deep, Smoky & Oudy","Men",440,590,0],["bleu-d-channel","Bleu D Channel","Fresh, Aquatic & Clean","Men",550,700,0],["brut","Brut","Classic, Fresh & Masculine","Men",330,480,0],["burberry-godess","Burberry Godess","Floral, Elegant & Feminine","Women",550,700,0],["burberry-weekend","Burberry Weekend","Fresh, Citrusy & Light","Men",550,700,0],["chandan","Chandan","Fresh & Clean","Unisex",550,700,0],["cr7","CR7","Fresh, Sporty & Woody","Men",550,700,0],["david-off-champion","David off Champion","Fresh, Aquatic & Energetic","Men",550,700,0],["david-off-cool-water","David off Cool Water","Aquatic, Fresh & Cool","Men",550,700,0],["dove","Dove","Elegant, Floral & Romantic","Women",550,700,0],["dunhill-icon","Dunhill Icon","Fruity, Citrus & Aquatic","Unisex",550,700,0],["dunhill-red","Dunhill Red","Spicy, Woody & Bold","Unisex",550,700,0],["gucci-florel","Gucci Florel","Floral, Fresh & Feminine","Unisex",550,700,0],["gucci-rush","Gucci Rush","Fruity, Spicy & Sensual","Men",550,700,0],["hawas","Hawas","Fruity, Citrus & Aquatic","Unisex",550,700,0],["hawas-intense","Hawas intense","Soft, Clean & Fresh","Men",550,700,0],["khamraha-og","Khamraha OG","Sweet, Woody & Oudy","Men",550,700,0],["khamraha-waha","Khamraha WAHA","Sweet, Oudy & Exotic","Men",550,700,0],["malik-al-dhahab","Malik Al Dhahab","Royal, Golden & Oudy","Unisex",550,700,0],["musk-berry-fume","Musk Berry Fume","Fruity, Musky & Sweet","Unisex",550,700,0],["musk-rajali","Musk Rajali","Musky, Warm & Sensual","Unisex",550,700,0],["musk-safi","Musk Safi","Soft, Clean & Musky","Unisex",550,700,0],["opan-d","Opan D.","Spicy, Oriental & Warm","Men",550,700,0],["peach-musk","Peach Musk","Fruity, Sweet & Musky","Women",1100,1250,0],["prince","Prince","Royal, Woody & Spicy","Men",1100,1250,0],["purple-oud","Purple Oud","Deep, Sweet & Oudy","Unisex",550,700,0],["red-ocean","Red Ocean","Fresh, Aquatic & Cool","Unisex",550,700,0],["red-vanilla","Red Vanilla","Sweet, Warm & Vanilla","Unisex",550,700,0],["royal-prophecy","Royal Prophecy","Rich, Regal & Woody","Men",550,700,0],["savage-dior","Savage Dior","Fresh, Aquatic & Clean","Unisex",550,700,0],["shezada","Shezada","Royal, Oudy & Musky","Men",1100,1250,0],["sweet-oud","Sweet Oud","Sweet, Woody & Oudy","Men",660,810,0],["tam-dao","TAM DAO","Elegant, Floral & Romantic","Unisex",550,700,0],["turk-khalifa","Turk Khalifa","Fresh, Aquatic & Clean","Unisex",715,865,0],["valentino","Valentino","Elegant, Floral & Romantic","Unisex",550,700,0],["zaffran","Zaffran","Spicy, Saffron & Exotic","Men",1100,1250,0]];
 var BY_ID={};MENU.forEach(function(c){c.items.forEach(function(i){i.cat=c.id;BY_ID[i.id]=i})});
+IZ.forEach(function(r){
+  BY_ID["iz-"+r[0]+"-a"]={id:"iz-"+r[0]+"-a",name:"IZYAN "+r[1]+" Attar",price:r[4],cat:"izyan",unit:"12 ml attar"};
+  BY_ID["iz-"+r[0]+"-p"]={id:"iz-"+r[0]+"-p",name:"IZYAN "+r[1]+" Perfume",price:r[5],cat:"izyan",unit:"50 ml perfume"};
+});
+function unitOf(it){return it.unit||UNIT[it.cat]}
 
 var WA_ICON="<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 0 0-7.75 13.57L3 21l4.56-1.2A9 9 0 1 0 12 3z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\"/><path d=\"M9.2 7.6c.3 0 .5.1.6.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.4.4.6 0 1.2-1 2-2.2 2-3.4-.3-6.7-3.6-7-7 0-1.2.8-2.1 2.1-2.1z\" fill=\"currentColor\"/></svg>";
 function $(id){return document.getElementById(id)}
@@ -583,6 +711,7 @@ function render(){
   var t=totals();
   document.querySelectorAll("[data-ctrl]").forEach(function(el){el.innerHTML=ctrlHTML(el.getAttribute("data-ctrl"))});
   document.querySelectorAll(".item").forEach(function(el){el.classList.toggle("has",qtyOf(el.getAttribute("data-id"))>0)});
+  document.querySelectorAll("[data-izc]").forEach(function(el){var s=el.getAttribute("data-izc"),qa=qtyOf("iz-"+s+"-a"),qp=qtyOf("iz-"+s+"-p");el.classList.toggle("has",qa+qp>0);var m=[];if(qa)m.push(qa+" attar");if(qp)m.push(qp+" perfume");el.querySelector(".ok").textContent=m.length?"✓ "+m.join(" + ")+" in order":""});
   document.querySelectorAll("[data-msg]").forEach(function(el){var q=qtyOf(el.getAttribute("data-msg"));el.textContent=q?"✓ "+q+" in your order":""});
   var itemsTxt=t.count+" item"+(t.count===1?"":"s");
   $("hdrCount").textContent=t.count;$("hdrCount").setAttribute("data-n",t.count);
@@ -597,7 +726,7 @@ function render(){
   $("clear").hidden=!t.count;
   $("lines").innerHTML=t.count?cart.map(function(l){
     var it=BY_ID[l.id];
-    return '<div class="line"><div class="info"><div class="nm">'+esc(label(l))+'</div><div class="meta">'+rs(it.price)+' / '+UNIT[it.cat]+'</div></div><div class="step"><button type="button" data-lq="'+esc(l.key)+'" data-d="-1" aria-label="Remove one">−</button><output>'+l.qty+'</output><button type="button" data-lq="'+esc(l.key)+'" data-d="1" aria-label="Add one">+</button></div><div class="lt">'+rs(l.qty*it.price)+'</div></div>';
+    return '<div class="line"><div class="info"><div class="nm">'+esc(label(l))+'</div><div class="meta">'+rs(it.price)+' / '+unitOf(it)+'</div></div><div class="step"><button type="button" data-lq="'+esc(l.key)+'" data-d="-1" aria-label="Remove one">−</button><output>'+l.qty+'</output><button type="button" data-lq="'+esc(l.key)+'" data-d="1" aria-label="Add one">+</button></div><div class="lt">'+rs(l.qty*it.price)+'</div></div>';
   }).join(""):'<div class="empty"><div class="big">🍫</div>Your order is empty.<br>Add some chocolates from the menu.</div>';
 }
 
@@ -615,6 +744,9 @@ document.addEventListener("click",function(e){
     add(id,fl,1);toast("Added to your order ✓");
   }
   else if(b.hasAttribute("data-lq")){var l=find(b.getAttribute("data-lq"));if(l)setQty(l.key,l.qty+(+b.getAttribute("data-d")))}
+  else if((id=b.getAttribute("data-izv"))){var card=b.closest("[data-izc]");card.querySelectorAll("[data-izv]").forEach(function(x){x.classList.toggle("on",x===b);x.setAttribute("aria-pressed",x===b)})}
+  else if((id=b.getAttribute("data-izadd"))){var c2=b.closest("[data-izc]"),v=c2.querySelector("[data-izv].on").getAttribute("data-izv");add("iz-"+id+"-"+v,[],1);toast("Added to your order ✓")}
+  else if((id=b.getAttribute("data-izf"))){izFilter=id;izAll=true;document.querySelectorAll("[data-izf]").forEach(function(x){x.classList.toggle("on",x===b)});drawIz()}
   else if(b.hasAttribute("data-copy")){copyText(b.getAttribute("data-copy"),b)}
   else if(b.hasAttribute("data-wa")){e.preventDefault();window.open(wa(b.getAttribute("data-wa")),"_blank","noopener")}
 });
@@ -640,7 +772,7 @@ $("send").onclick=function(){
   var t=totals();if(!t.count)return;
   var mode=$("mDel").checked?"Delivery":"Pickup";
   var msg=["Hi Sweetness! I'd like to place an order:",""];
-  cart.forEach(function(l,i){var it=BY_ID[l.id];msg.push((i+1)+". "+label(l)+" ["+UNIT[it.cat]+"] x "+l.qty+" = "+rs(l.qty*it.price))});
+  cart.forEach(function(l,i){var it=BY_ID[l.id];msg.push((i+1)+". "+label(l)+" ["+unitOf(it)+"] x "+l.qty+" = "+rs(l.qty*it.price))});
   msg.push("","Total: "+rs(t.total)+" ("+t.count+" item"+(t.count===1?"":"s")+")","");
   var nm=$("fName").value.trim(),ad=$("fAddr").value.trim(),dt=fmtDate($("fDate").value),nt=$("fNote").value.trim();
   if(nm)msg.push("Name: "+nm);
@@ -650,6 +782,42 @@ $("send").onclick=function(){
   msg.push("Payment: UPI ("+UPI+")");
   window.open(wa(msg.join("\n")),"_blank","noopener");
 };
+
+/* ---------- IZYAN grid ---------- */
+var izFilter="all",izAll=false,IZ_FIRST=12;
+function izCard(r){
+  return '<article class="izc" data-izc="'+r[0]+'"><div class="im"><img src="izyan/'+r[0]+'.webp" alt="IZYAN '+esc(r[1])+' attar" loading="lazy" width="400" height="400">'+(r[6]?'<span class="nw">NEW</span>':'')+'</div>'+
+  '<div class="bd"><div class="gd">'+r[3]+'</div><div class="nm">'+esc(r[1])+'</div><div class="nt">'+esc(r[2])+'</div>'+
+  '<div class="vs"><button type="button" class="on" aria-pressed="true" data-izv="a"><small>Attar 12ml</small><b>'+rs(r[4])+'</b></button><button type="button" aria-pressed="false" data-izv="p"><small>Perfume 50ml</small><b>'+rs(r[5])+'</b></button></div>'+
+  '<button type="button" class="ad" data-izadd="'+r[0]+'">'+PLUS+'Add to order</button><div class="ok"></div></div></article>';
+}
+function drawIz(){
+  var q=$("izq").value.trim().toLowerCase();
+  var list=IZ.filter(function(r){
+    if(izFilter==="new"&&!r[6])return false;
+    if(izFilter!=="all"&&izFilter!=="new"&&r[3]!==izFilter)return false;
+    return !q||(r[1]+" "+r[2]).toLowerCase().indexOf(q)>-1;
+  });
+  var limited=!q&&izFilter==="all"&&!izAll;
+  var shown=limited?list.slice(0,IZ_FIRST):list;
+  $("izgrid").innerHTML=shown.length?shown.map(izCard).join(""):'<div class="iz-empty">No fragrance found. Try another name or note.</div>';
+  $("izmore").parentNode.hidden=!limited||list.length<=IZ_FIRST;
+  $("izcount").textContent="Showing "+shown.length+" of "+list.length+" fragrance"+(list.length===1?"":"s");
+  render();
+}
+$("izmore").onclick=function(){izAll=true;drawIz()};
+$("izq").addEventListener("input",drawIz);
+drawIz();
+
+/* IZYAN popup under header */
+(function(){
+  var seen=false;try{seen=sessionStorage.getItem("izpop")==="1"}catch(e){}
+  function hide(){$("izpop").classList.remove("show");try{sessionStorage.setItem("izpop","1")}catch(e){}}
+  $("izx").onclick=hide;$("izgo").addEventListener("click",hide);
+  if(!seen)setTimeout(function(){if(window.scrollY<500)$("izpop").classList.add("show")},1200);
+  setTimeout(function(){if($("izpop").classList.contains("show"))hide()},12000);
+  window.addEventListener("scroll",function(){if(window.scrollY>500&&$("izpop").classList.contains("show"))hide()},{passive:true});
+})();
 
 /* chips active state */
 var chipLinks=document.querySelectorAll("[data-chip]");
