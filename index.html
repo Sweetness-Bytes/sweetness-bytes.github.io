@@ -60,6 +60,28 @@ a{color:inherit}
 .cart-btn .count{min-width:20px;height:20px;border-radius:10px;background:var(--gold);color:var(--deep);font-size:.7rem;font-weight:700;display:inline-grid;place-items:center;padding:0 5px}
 .cart-btn .count[data-n="0"]{background:rgba(255,255,255,.18);color:#fff}
 
+/* ---------- tabs ---------- */
+:root{--hh:116px}
+html{scroll-padding-top:calc(var(--hh) + 64px)}
+.tabs{max-width:1120px;margin:0 auto;padding:0 10px 10px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.tab{position:relative;display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:6px;border-radius:12px;text-decoration:none;color:#f3e3e7;font-size:.82rem;font-weight:500;background:rgba(255,255,255,.06);border:1px solid rgba(241,223,168,.2);white-space:nowrap;transition:background .2s,color .2s}
+.tab i{font-style:normal;font-size:1.05rem}
+.tab:hover{background:rgba(255,255,255,.12)}
+.tab.on{background:linear-gradient(135deg,var(--gold),#E6C65A);border-color:var(--gold);color:var(--deep);font-weight:600}
+.tab .sm{display:none}
+.tab .tb{font-size:.56rem;font-weight:700;letter-spacing:.04em;background:var(--rose);color:#fff;border-radius:999px;padding:2px 6px}
+.tab .tb.new{background:#1FA855}
+.panel[hidden]{display:none}
+.panel .iz{margin-top:0}
+#panel-cakes section{padding-top:28px}
+.shared{padding-bottom:8px}
+@media (max-width:520px){
+  .tab{flex-direction:column;gap:1px;font-size:.72rem;padding:5px 4px;min-height:48px}
+  .tab .lg{display:none}.tab .sm{display:inline}
+  .tab .tb{position:absolute;top:-6px;right:6px;font-size:.5rem;padding:1px 5px}
+  .tab i{font-size:1rem}
+}
+
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:520px;display:flex;align-items:flex-end;overflow:hidden;background-color:var(--deep)}
 .hero .bg{position:absolute;inset:0;background-position:center 45%;animation:zoom 16s ease-out both}
@@ -103,7 +125,7 @@ section{padding-top:48px}
 .sec-head p{font-size:.86rem;color:var(--muted);max-width:460px;margin:8px auto 0}
 
 /* ---------- category chips ---------- */
-.chips{position:sticky;top:64px;z-index:20;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px 16px;margin:0 -16px 18px;background:rgba(251,241,222,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.chips{position:sticky;top:var(--hh);z-index:20;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px 16px;margin:0 -16px 18px;background:rgba(251,241,222,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:0 0 auto;text-decoration:none;font-size:.78rem;font-weight:500;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--cream-2);color:var(--maroon);transition:.2s}
 .chip.on{background:var(--maroon);border-color:var(--maroon);color:#fff}
@@ -159,7 +181,7 @@ select{width:100%;appearance:none;-webkit-appearance:none;background:#fff url("d
 .cakes .btn{margin-top:26px;padding:14px 26px;font-size:.92rem}
 
 /* ---------- IZYAN popup ---------- */
-.izpop{position:fixed;z-index:35;top:76px;left:12px;right:12px;max-width:460px;margin:0 auto;background:linear-gradient(135deg,#1c0a10,#3a0b1c);color:#fff;border:1px solid var(--gold);border-radius:18px;padding:14px 44px 14px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 16px 40px rgba(0,0,0,.4);transform:translateY(-16px);opacity:0;pointer-events:none;transition:.35s cubic-bezier(.2,.8,.2,1)}
+.izpop{position:fixed;z-index:35;top:calc(var(--hh) + 10px);left:12px;right:12px;max-width:460px;margin:0 auto;background:linear-gradient(135deg,#1c0a10,#3a0b1c);color:#fff;border:1px solid var(--gold);border-radius:18px;padding:14px 44px 14px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 16px 40px rgba(0,0,0,.4);transform:translateY(-16px);opacity:0;pointer-events:none;transition:.35s cubic-bezier(.2,.8,.2,1)}
 .izpop.show{transform:none;opacity:1;pointer-events:auto}
 .izpop img{width:58px;height:58px;border-radius:12px;object-fit:cover;flex:0 0 auto;border:1px solid rgba(201,162,39,.6)}
 .izpop .k{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:600}
@@ -186,7 +208,7 @@ select{width:100%;appearance:none;-webkit-appearance:none;background:#fff url("d
 .iz-sizes div{border:1px solid rgba(201,162,39,.35);border-radius:14px;padding:12px;background:rgba(255,255,255,.03)}
 .iz-sizes b{display:block;font-family:var(--display);color:var(--gold-l);font-size:1.05rem}
 .iz-sizes span{font-size:.72rem;color:#cdb8bf}
-.iz-ctl{position:sticky;top:64px;z-index:15;margin:34px -16px 18px;padding:10px 16px;background:rgba(20,6,9,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:10px;border-bottom:1px solid rgba(201,162,39,.2)}
+.iz-ctl{position:sticky;top:var(--hh);z-index:15;margin:34px -16px 18px;padding:10px 16px;background:rgba(20,6,9,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:10px;border-bottom:1px solid rgba(201,162,39,.2)}
 .iz-f{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
 .iz-f::-webkit-scrollbar{display:none}
 .iz-f button{flex:0 0 auto;font-size:.76rem;font-weight:500;padding:7px 14px;border-radius:999px;border:1px solid rgba(201,162,39,.4);background:transparent;color:#ecdcc2;cursor:pointer}
@@ -329,7 +351,7 @@ body.has-cart .fab{display:none}
 .clear{background:none;border:none;color:var(--muted);font-size:.74rem;text-decoration:underline;cursor:pointer;margin-top:10px;display:block;margin-left:auto;margin-right:auto}
 
 /* ---------- toast ---------- */
-.toast{position:fixed;left:50%;top:76px;transform:translate(-50%,-20px);background:var(--deep);color:#fff;font-size:.8rem;padding:10px 16px;border-radius:999px;z-index:70;opacity:0;transition:.25s;pointer-events:none;border:1px solid var(--gold);max-width:calc(100vw - 32px);text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.toast{position:fixed;left:50%;top:calc(var(--hh) + 10px);transform:translate(-50%,-20px);background:var(--deep);color:#fff;font-size:.8rem;padding:10px 16px;border-radius:999px;z-index:70;opacity:0;transition:.25s;pointer-events:none;border:1px solid var(--gold);max-width:calc(100vw - 32px);text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.25)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
 /* reveal */
@@ -359,7 +381,7 @@ body.has-cart .fab{display:none}
   .gallery .g{width:auto}
   .chips{justify-content:center;width:fit-content;margin:0 auto 22px;padding:8px;border-radius:999px;box-shadow:0 4px 14px rgba(58,8,23,.08)}
   .cat{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start}
-  .cat-banner{height:100%;min-height:260px;position:sticky;top:130px}
+  .cat-banner{height:100%;min-height:260px;position:sticky;top:calc(var(--hh) + 70px)}
   .cat-banner::after{background:linear-gradient(180deg,rgba(51,7,21,.05) 20%,rgba(51,7,21,.92) 100%)}
   .grid{margin-top:0}
   .drawer{left:auto;top:0;bottom:0;width:440px;max-height:none;border-radius:22px 0 0 22px;transform:translateX(100%)}
@@ -372,14 +394,11 @@ body.has-cart .fab{display:none}
 
 <header class="top">
   <div class="container">
-    <a class="logo-link" href="#top" aria-label="Sweetness home">
+    <a class="logo-link" href="#chocolates" aria-label="Sweetness home">
       <span class="logo-mark ph i-logo" role="img" aria-label="Sweetness logo"></span>
       <span class="logo-text">Sweetness<small>Homemade Chocolates</small></span>
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="#menu">Menu</a>
-      <a href="#izyan">Attar &amp; Perfumes<span class="nb">NEW</span></a>
-      <a href="#cakes">Cakes<span class="nb">SOON</span></a>
       <a href="#special">Custom orders</a>
       <a href="#pay">Payment</a>
       <a href="#contact">Contact</a>
@@ -389,6 +408,11 @@ body.has-cart .fab{display:none}
       <span class="count" id="hdrCount" data-n="0">0</span>
     </button>
   </div>
+  <div class="tabs" role="tablist" aria-label="Shop sections">
+    <a class="tab on" id="tab-chocolates" role="tab" aria-selected="true" aria-controls="panel-chocolates" href="#chocolates" data-tab="chocolates"><i aria-hidden="true">🍫</i><span>Chocolates</span></a>
+    <a class="tab" id="tab-attar" role="tab" aria-selected="false" aria-controls="panel-attar" href="#attar" data-tab="attar"><i aria-hidden="true">🧴</i><span class="lg">Attar &amp; Perfumes</span><span class="sm">Attar</span><b class="tb new">NEW</b></a>
+    <a class="tab" id="tab-cakes" role="tab" aria-selected="false" aria-controls="panel-cakes" href="#cakes" data-tab="cakes"><i aria-hidden="true">🎂</i><span class="lg">Cakes &amp; Pastries</span><span class="sm">Cakes</span><b class="tb">SOON</b></a>
+  </div>
 </header>
 
 <div class="izpop" id="izpop" role="dialog" aria-label="IZYAN Attar &amp; Perfumes">
@@ -397,13 +421,13 @@ body.has-cart .fab{display:none}
     <div class="k">New · Our in-house brand</div>
     <div class="h"><b>IZYAN</b> Attar &amp; Perfumes</div>
     <div class="s">53 long-lasting attars · 12 ml attar &amp; 50 ml perfume</div>
-    <a class="go" href="#izyan" id="izgo">Explore collection →</a>
+    <a class="go" href="#attar" id="izgo">Explore collection →</a>
   </div>
   <button class="xx" type="button" id="izx" aria-label="Close">×</button>
 </div>
 
 <main id="top">
-  <a class="soon-strip" href="#cakes">🎂 Cakes &amp; Pastries launching soon!<span>Know more</span></a>
+  <div class="panel" id="panel-chocolates" data-panel="chocolates" role="tabpanel" aria-labelledby="tab-chocolates">
   <div class="hero">
     <div class="bg ph i-mixed" role="img" aria-label="Handmade rose and flower chocolates"></div>
     <div class="hero-in">
@@ -421,7 +445,6 @@ body.has-cart .fab{display:none}
     </div>
   </div>
   <div class="thread"></div>
-
   <div class="container">
     <div class="trust">
       <div><span class="ic">🍫</span><p><b>Handmade</b><span>Made fresh at home</span></p></div>
@@ -453,19 +476,34 @@ body.has-cart .fab{display:none}
       <div id="cats"></div>
     </section>
 
-    <section id="cakes" aria-labelledby="cakesTitle">
-      <div class="cakes rv">
-        <div class="ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 6c2 3 2 5 0 7-2-2-2-4 0-7z" fill="currentColor"/><path d="M32 14v8"/><path d="M14 30h36a4 4 0 0 1 4 4v6H10v-6a4 4 0 0 1 4-4z"/><path d="M10 40c4 4 8 4 11 0 3 4 8 4 11 0 3 4 8 4 11 0 3 4 7 4 11 0"/><path d="M8 54h48"/><path d="M10 40v14M54 40v14"/><path d="M20 22h24v8H20z"/></svg></div>
-        <div class="tag">Coming soon</div>
-        <h2 id="cakesTitle">Cakes <em>&amp;</em> Pastries</h2>
-        <p class="big">We will be <span>soon launching</span> cakes &amp; pastries.</p>
-        <p class="stay">Stay tuned with us!</p>
-        <a class="btn btn-gold" data-wa="Hi Sweetness! Please let me know when your cakes &amp; pastries launch." href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.75 13.57L3 21l4.56-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 7.6c.3 0 .5.1.6.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.4.4.6 0 1.2-1 2-2.2 2-3.4-.3-6.7-3.6-7-7 0-1.2.8-2.1 2.1-2.1z" fill="currentColor"/></svg>Notify me on WhatsApp</a>
+    <section id="special" aria-labelledby="spTitle">
+      <div class="sec-head">
+        <div class="kicker">Made for your moments</div>
+        <h2 id="spTitle">Custom &amp; festival orders</h2>
+      </div>
+      <div class="special">
+        <div class="sp rv">
+          <div class="ph i-hearts" role="img" aria-label="Heart chocolates"></div>
+          <div class="t">
+            <h3>Custom orders</h3>
+            <p>Birthdays, return gifts, weddings or corporate gifting — tell us the occasion, flavours and quantity, and we'll make it for you.</p>
+            <a class="btn btn-wa" data-wa="Hi Sweetness! I'd like to discuss a custom chocolate order.&#10;Occasion: &#10;Quantity: &#10;Date needed: " href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.75 13.57L3 21l4.56-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 7.6c.3 0 .5.1.6.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.4.4.6 0 1.2-1 2-2.2 2-3.4-.3-6.7-3.6-7-7 0-1.2.8-2.1 2.1-2.1z" fill="currentColor"/></svg>Ask for a custom order</a>
+          </div>
+        </div>
+        <div class="sp rv">
+          <div class="ph i-white-pair" role="img" aria-label="White chocolate bars"></div>
+          <div class="t">
+            <h3>Festival packs</h3>
+            <p>Gift boxes for Diwali, Raksha Bandhan, Eid and every festival in between. Bulk orders welcome.</p>
+            <a class="btn btn-gold" data-wa="Hi Sweetness! I'd like to know about your festival packs.&#10;Festival: &#10;Number of packs: " href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.75 13.57L3 21l4.56-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 7.6c.3 0 .5.1.6.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.4.4.6 0 1.2-1 2-2.2 2-3.4-.3-6.7-3.6-7-7 0-1.2.8-2.1 2.1-2.1z" fill="currentColor"/></svg>Enquire about festival packs</a>
+          </div>
+        </div>
       </div>
     </section>
-
+  </div>
   </div>
 
+  <div class="panel" id="panel-attar" data-panel="attar" role="tabpanel" aria-labelledby="tab-attar" hidden>
   <section class="iz" id="izyan" aria-labelledby="izTitle">
     <div class="in">
       <div class="iz-head">
@@ -494,33 +532,24 @@ body.has-cart .fab{display:none}
       <div class="iz-foot">Prices subject to change · Instagram @izyan.attar</div>
     </div>
   </section>
+  </div>
 
-  <div class="container">
-    <section id="special" aria-labelledby="spTitle">
-      <div class="sec-head">
-        <div class="kicker">Made for your moments</div>
-        <h2 id="spTitle">Custom &amp; festival orders</h2>
-      </div>
-      <div class="special">
-        <div class="sp rv">
-          <div class="ph i-hearts" role="img" aria-label="Heart chocolates"></div>
-          <div class="t">
-            <h3>Custom orders</h3>
-            <p>Birthdays, return gifts, weddings or corporate gifting — tell us the occasion, flavours and quantity, and we'll make it for you.</p>
-            <a class="btn btn-wa" data-wa="Hi Sweetness! I'd like to discuss a custom chocolate order.&#10;Occasion: &#10;Quantity: &#10;Date needed: " href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.75 13.57L3 21l4.56-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 7.6c.3 0 .5.1.6.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.4.4.6 0 1.2-1 2-2.2 2-3.4-.3-6.7-3.6-7-7 0-1.2.8-2.1 2.1-2.1z" fill="currentColor"/></svg>Ask for a custom order</a>
-          </div>
-        </div>
-        <div class="sp rv">
-          <div class="ph i-white-pair" role="img" aria-label="White chocolate bars"></div>
-          <div class="t">
-            <h3>Festival packs</h3>
-            <p>Gift boxes for Diwali, Raksha Bandhan, Eid and every festival in between. Bulk orders welcome.</p>
-            <a class="btn btn-gold" data-wa="Hi Sweetness! I'd like to know about your festival packs.&#10;Festival: &#10;Number of packs: " href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.75 13.57L3 21l4.56-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 7.6c.3 0 .5.1.6.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.4.4.6 0 1.2-1 2-2.2 2-3.4-.3-6.7-3.6-7-7 0-1.2.8-2.1 2.1-2.1z" fill="currentColor"/></svg>Enquire about festival packs</a>
-          </div>
-        </div>
+  <div class="panel" id="panel-cakes" data-panel="cakes" role="tabpanel" aria-labelledby="tab-cakes" hidden>
+    <div class="container">
+    <section id="cakes" aria-labelledby="cakesTitle">
+      <div class="cakes rv">
+        <div class="ic"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 6c2 3 2 5 0 7-2-2-2-4 0-7z" fill="currentColor"/><path d="M32 14v8"/><path d="M14 30h36a4 4 0 0 1 4 4v6H10v-6a4 4 0 0 1 4-4z"/><path d="M10 40c4 4 8 4 11 0 3 4 8 4 11 0 3 4 8 4 11 0 3 4 7 4 11 0"/><path d="M8 54h48"/><path d="M10 40v14M54 40v14"/><path d="M20 22h24v8H20z"/></svg></div>
+        <div class="tag">Coming soon</div>
+        <h2 id="cakesTitle">Cakes <em>&amp;</em> Pastries</h2>
+        <p class="big">We will be <span>soon launching</span> cakes &amp; pastries.</p>
+        <p class="stay">Stay tuned with us!</p>
+        <a class="btn btn-gold" data-wa="Hi Sweetness! Please let me know when your cakes &amp; pastries launch." href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.75 13.57L3 21l4.56-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 7.6c.3 0 .5.1.6.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.4.4.6 0 1.2-1 2-2.2 2-3.4-.3-6.7-3.6-7-7 0-1.2.8-2.1 2.1-2.1z" fill="currentColor"/></svg>Notify me on WhatsApp</a>
       </div>
     </section>
+    </div>
+  </div>
 
+  <div class="container shared">
     <section id="pay" aria-labelledby="payTitle">
       <div class="sec-head">
         <div class="kicker">Easy payment</div>
@@ -818,6 +847,42 @@ drawIz();
   setTimeout(function(){if($("izpop").classList.contains("show"))hide()},12000);
   window.addEventListener("scroll",function(){if(window.scrollY>500&&$("izpop").classList.contains("show"))hide()},{passive:true});
 })();
+
+/* ---------- tabs / router ---------- */
+var TABS=["chocolates","attar","cakes"];
+var HASH_TAB={top:"chocolates",menu:"chocolates",special:"chocolates",izyan:"attar"};
+var curTab="chocolates";
+function setHeaderVar(){var h=document.querySelector(".top").offsetHeight;document.documentElement.style.setProperty("--hh",h+"px")}
+function tabFor(h){
+  if(TABS.indexOf(h)>-1)return h;
+  if(HASH_TAB[h])return HASH_TAB[h];
+  if(/^cat-/.test(h))return "chocolates";
+  return null; /* shared sections (pay, how, contact) keep the current tab */
+}
+function showTab(tab){
+  if(tab===curTab)return;
+  curTab=tab;
+  document.querySelectorAll("[data-panel]").forEach(function(p){p.hidden=p.getAttribute("data-panel")!==tab});
+  document.querySelectorAll("[data-tab]").forEach(function(a){var on=a.getAttribute("data-tab")===tab;a.classList.toggle("on",on);a.setAttribute("aria-selected",on)});
+  if(tab==="attar"&&$("izpop").classList.contains("show"))$("izx").click();
+}
+function go(h,push){
+  var tab=tabFor(h);
+  if(tab)showTab(tab);
+  if(push)try{history.pushState(null,"","#"+h)}catch(e){location.hash=h}
+  var el=document.getElementById(h);
+  if(TABS.indexOf(h)>-1||!el){window.scrollTo({top:0,behavior:push?"smooth":"auto"});return}
+  el.scrollIntoView({behavior:push?"smooth":"auto",block:"start"});
+}
+document.addEventListener("click",function(e){
+  var a=e.target.closest('a[href^="#"]');
+  if(!a||a.hasAttribute("data-wa"))return;
+  var h=a.getAttribute("href").slice(1);if(!h)return;
+  e.preventDefault();go(h,true);
+});
+window.addEventListener("popstate",function(){go(location.hash.slice(1)||"chocolates",false)});
+setHeaderVar();window.addEventListener("resize",setHeaderVar);
+if(location.hash.length>1)go(location.hash.slice(1),false);
 
 /* chips active state */
 var chipLinks=document.querySelectorAll("[data-chip]");
