@@ -30,6 +30,7 @@
   --serif:'Cormorant Garamond',Georgia,serif;--display:'Playfair Display',Georgia,serif;--sans:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;scroll-padding-top:120px;-webkit-text-size-adjust:100%}
 body{background:var(--cream);background-image:radial-gradient(circle at 6% 2%,rgba(201,162,39,.16),transparent 38%),radial-gradient(circle at 96% 60%,rgba(217,67,107,.10),transparent 42%);font-family:var(--sans);color:var(--ink);line-height:1.5;overflow-x:hidden}
 img{display:block;max-width:100%}
@@ -402,6 +403,16 @@ body.has-cart .fab{display:none}
 .empty .big{font-size:2.4rem;margin-bottom:6px}
 .form{display:grid;gap:10px;margin-top:16px}
 .form h3{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);font-weight:600}
+.form h3 small{display:block;letter-spacing:0;text-transform:none;color:var(--muted);font-weight:500;font-size:.7rem;margin-top:3px}
+.fld{display:flex;flex-direction:column;gap:4px}
+.fld>label,.fld .lbl{font-size:.72rem;color:var(--muted);font-weight:500}
+.fld .tel{display:flex;align-items:stretch;border:1px solid var(--cream-2);border-radius:10px;background:#fff;overflow:hidden}
+.fld .tel span{display:grid;place-items:center;padding:0 10px;background:var(--cream-2);color:var(--deep);font-size:.86rem;font-weight:600}
+.fld .tel input{border:none;border-radius:0;flex:1;min-width:0}
+.fld .err{font-size:.72rem;color:#c0262d;font-weight:500;min-height:0}
+.fld.bad input,.fld.bad textarea,.fld.bad .tel{border-color:#c0262d;background:#fff6f6}
+.fld.bad .tel input{background:#fff6f6}
+.fld.bad .seg label{border-color:#e7a1a4}
 .form label{display:flex;flex-direction:column;gap:4px;font-size:.72rem;color:var(--muted);font-weight:500}
 .form input,.form textarea{background:#fff;border:1px solid var(--cream-2);border-radius:10px;padding:10px 12px;font-size:.88rem;color:var(--deep);width:100%}
 .form textarea{resize:vertical;min-height:64px}
@@ -724,16 +735,18 @@ body.has-cart .fab{display:none}
   <div class="dh"><h2 id="dTitle">Your order</h2><button class="x" type="button" id="closeCart" aria-label="Close">×</button></div>
   <div class="db">
     <div id="lines"></div>
-    <form class="form" id="form" autocomplete="on" onsubmit="return false">
-      <h3>Your details</h3>
-      <label>Name<input id="fName" name="name" type="text" placeholder="Your name" autocomplete="name"></label>
-      <div class="seg" role="radiogroup" aria-label="Pickup or delivery">
-        <div><input type="radio" name="mode" id="mPick" value="Pickup" checked><label for="mPick">Pickup</label></div>
-        <div><input type="radio" name="mode" id="mDel" value="Delivery"><label for="mDel">Delivery</label></div>
-      </div>
-      <label id="addrWrap" hidden>Delivery address / area<textarea id="fAddr" name="address" placeholder="Flat, building, area" autocomplete="street-address"></textarea></label>
-      <label>Date needed<input id="fDate" name="date" type="date"></label>
-      <label>Note (optional)<textarea id="fNote" name="note" placeholder="Gift message, packing request, etc."></textarea></label>
+    <form class="form" id="form" autocomplete="on" novalidate onsubmit="return false">
+      <h3>Your details <small>All fields marked * are required</small></h3>
+      <div class="fld" data-fld="name"><label for="fName">Name *</label><input id="fName" name="name" type="text" placeholder="Your full name" autocomplete="name" maxlength="40"><div class="err" id="eName"></div></div>
+      <div class="fld" data-fld="phone"><label for="fPhone">Mobile number *</label><div class="tel"><span>+91</span><input id="fPhone" name="tel" type="tel" inputmode="numeric" placeholder="10-digit mobile number" autocomplete="tel-national" maxlength="18"></div><div class="err" id="ePhone"></div></div>
+      <div class="fld" data-fld="mode"><span class="lbl" id="modeLbl">Pickup or delivery *</span>
+        <div class="seg" role="radiogroup" aria-labelledby="modeLbl">
+          <div><input type="radio" name="mode" id="mPick" value="Pickup"><label for="mPick">Pickup</label></div>
+          <div><input type="radio" name="mode" id="mDel" value="Delivery"><label for="mDel">Delivery</label></div>
+        </div><div class="err" id="eMode"></div></div>
+      <div class="fld" data-fld="addr" id="addrWrap" hidden><label for="fAddr">Delivery address *</label><textarea id="fAddr" name="address" placeholder="Flat / house no., building, street, area, landmark" autocomplete="street-address" maxlength="200"></textarea><div class="err" id="eAddr"></div></div>
+      <div class="fld" data-fld="date"><label for="fDate">Date needed *</label><input id="fDate" name="date" type="date"><div class="err" id="eDate"></div></div>
+      <div class="fld"><label for="fNote">Note (optional)</label><textarea id="fNote" name="note" placeholder="Gift message, packing request, etc." maxlength="200"></textarea></div>
     </form>
     <div class="paybox form" id="paybox">
       <h3>Payment (UPI)</h3>
@@ -927,21 +940,62 @@ function closeCart(){$("drawer").classList.remove("open");$("scrim").classList.r
 $("openCart").onclick=openCart;$("barOpen").onclick=openCart;$("closeCart").onclick=closeCart;$("scrim").onclick=closeCart;
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&$("drawer").classList.contains("open"))closeCart()});
 $("clear").onclick=function(){if(confirm("Clear your whole order?")){cart=[];save();render()}};
-document.querySelectorAll('input[name="mode"]').forEach(function(r){r.onchange=function(){$("addrWrap").hidden=!$("mDel").checked}});
+document.querySelectorAll('input[name="mode"]').forEach(function(r){r.onchange=function(){$("addrWrap").hidden=!$("mDel").checked;setErr("mode","eMode","");if(!$("mDel").checked)setErr("addr","eAddr","")}});
 (function(){var d=new Date();$("fDate").min=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")})();
 
 function fmtDate(v){if(!v)return"";var p=v.split("-");var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];return +p[2]+" "+m[+p[1]-1]+" "+p[0]}
+/* ---------- checkout details: validation + WhatsApp message ---------- */
+var DKEY="sweetness-details-v1";
+function cleanPhone(v){
+  var d=String(v).replace(/\D/g,"");
+  if(d.length===12&&d.indexOf("91")===0)d=d.slice(2);
+  else if(d.length===11&&d.charAt(0)==="0")d=d.slice(1);
+  return d;
+}
+function todayISO(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function modeVal(){var r=document.querySelector('input[name="mode"]:checked');return r?r.value:""}
+function setErr(fld,errId,msg){
+  var box=document.querySelector('[data-fld="'+fld+'"]');
+  box.classList.toggle("bad",!!msg);$(errId).textContent=msg||"";
+}
+function validate(){
+  var errs=[];
+  var nm=$("fName").value.trim(),ph=cleanPhone($("fPhone").value),md=modeVal(),ad=$("fAddr").value.trim(),dt=$("fDate").value;
+  function chk(fld,id,msg){setErr(fld,id,msg);if(msg)errs.push(fld)}
+  chk("name","eName",nm.length<2?"Please enter your name":"");
+  chk("phone","ePhone",!ph?"Please enter your mobile number":!/^[6-9]\d{9}$/.test(ph)?"Enter a valid 10-digit mobile number":"");
+  chk("mode","eMode",!md?"Please choose Pickup or Delivery":"");
+  if(md==="Delivery")chk("addr","eAddr",ad.length<10?"Please enter your full delivery address":"");else setErr("addr","eAddr","");
+  chk("date","eDate",!dt?"Please choose the date you need it":dt<todayISO()?"Date can't be in the past":"");
+  return {ok:!errs.length,first:errs[0],nm:nm,ph:ph,md:md,ad:ad,dt:dt};
+}
+function saveDetails(){try{localStorage.setItem(DKEY,JSON.stringify({n:$("fName").value.trim(),p:cleanPhone($("fPhone").value),a:$("fAddr").value.trim()}))}catch(e){}}
+(function(){try{var d=JSON.parse(localStorage.getItem(DKEY)||"null");if(d){$("fName").value=d.n||"";$("fPhone").value=d.p||"";$("fAddr").value=d.a||""}}catch(e){}})();
+$("fPhone").addEventListener("input",function(){
+  var c=cleanPhone(this.value);if(c.length<=10&&c!==this.value)this.value=c;
+  if($("ePhone").textContent)validate();
+});
+["fName","fAddr","fDate"].forEach(function(id){$(id).addEventListener("input",function(){if(document.querySelector("#form .bad"))validate()})});
 $("send").onclick=function(){
   var t=totals();if(!t.count)return;
-  var mode=$("mDel").checked?"Delivery":"Pickup";
+  var v=validate();
+  if(!v.ok){
+    var box=document.querySelector('[data-fld="'+v.first+'"]');
+    box.scrollIntoView({behavior:"smooth",block:"center"});
+    var f=box.querySelector("input,textarea");if(f&&v.first!=="mode")setTimeout(function(){f.focus({preventScroll:true})},250);
+    toast("Please fill all required details");
+    return;
+  }
+  saveDetails();
   var msg=["Hi Sweetness! I'd like to place an order:",""];
   cart.forEach(function(l,i){var it=BY_ID[l.id];msg.push((i+1)+". "+label(l)+" ["+unitOf(it)+"] x "+l.qty+" = "+rs(l.qty*it.price))});
   msg.push("","Total: "+rs(t.total)+" ("+t.count+" item"+(t.count===1?"":"s")+")","");
-  var nm=$("fName").value.trim(),ad=$("fAddr").value.trim(),dt=fmtDate($("fDate").value),nt=$("fNote").value.trim();
-  if(nm)msg.push("Name: "+nm);
-  msg.push(mode+(mode==="Delivery"&&ad?" to: "+ad:""));
-  if(dt)msg.push("Needed on: "+dt);
-  if(nt)msg.push("Note: "+nt);
+  msg.push("Name: "+v.nm);
+  msg.push("Mobile: +91 "+v.ph.slice(0,5)+" "+v.ph.slice(5));
+  msg.push("Order type: "+v.md);
+  if(v.md==="Delivery")msg.push("Delivery address: "+v.ad.split(/\n+/).map(function(s){return s.trim().replace(/,+$/,"")}).filter(Boolean).join(", "));
+  msg.push("Needed on: "+fmtDate(v.dt));
+  var nt=$("fNote").value.trim();if(nt)msg.push("Note: "+nt);
   msg.push("Payment: UPI ("+UPI+")");
   window.open(wa(msg.join("\n")),"_blank","noopener");
 };
