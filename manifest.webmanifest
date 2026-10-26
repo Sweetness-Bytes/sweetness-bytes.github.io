@@ -1,0 +1,25 @@
+{
+  "name": "Sweetness — Chocolates & IZYAN Attar",
+  "short_name": "Sweetness",
+  "description": "Handmade chocolates from Malad East and IZYAN attar & perfumes. Order on WhatsApp, pay via UPI.",
+  "id": "./",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FBF1DE",
+  "theme_color": "#330715",
+  "lang": "en-IN",
+  "categories": ["food", "shopping"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Chocolates", "short_name": "Chocolates", "url": "./?source=pwa#chocolates", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Make Your Own Bar", "short_name": "Own Bar", "url": "./?source=pwa#make", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "IZYAN Attar & Perfumes", "short_name": "Attar", "url": "./?source=pwa#attar", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
