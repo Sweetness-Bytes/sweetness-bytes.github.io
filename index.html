@@ -943,7 +943,16 @@ $("clear").onclick=function(){if(confirm("Clear your whole order?")){cart=[];sav
 document.querySelectorAll('input[name="mode"]').forEach(function(r){r.onchange=function(){$("addrWrap").hidden=!$("mDel").checked;setErr("mode","eMode","");if(!$("mDel").checked)setErr("addr","eAddr","")}});
 (function(){var d=new Date();$("fDate").min=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")})();
 
-function fmtDate(v){if(!v)return"";var p=v.split("-");var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];return +p[2]+" "+m[+p[1]-1]+" "+p[0]}
+function fmtDate(v){if(!v)return"";var p=v.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]);var W=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];return W[d.getDay()]+", "+d.getDate()+" "+M[d.getMonth()]+" "+d.getFullYear()}
+/* Whole days from today (customer's phone date) to the chosen date; null when no date. */
+function daysUntil(v){if(!v)return null;var p=v.split("-"),n=new Date();return Math.round((Date.UTC(+p[0],+p[1]-1,+p[2])-Date.UTC(n.getFullYear(),n.getMonth(),n.getDate()))/86400000)}
+function countdownLine(v,mode){
+  var d=daysUntil(v);if(d===null||d<0)return "";
+  var what=mode==="Delivery"?"delivery":mode==="Pickup"?"pickup":"the order";
+  if(d===0)return "⚡ SAME-DAY ORDER: needed TODAY ("+fmtDate(v)+")";
+  if(d===1)return "⏳ 1 day left for "+what+": needed TOMORROW ("+fmtDate(v)+")";
+  return "⏳ "+d+" days left for "+what+": needed on "+fmtDate(v);
+}
 /* ---------- checkout details: validation + WhatsApp message ---------- */
 var DKEY="sweetness-details-v1";
 function cleanPhone(v){
@@ -988,13 +997,14 @@ $("send").onclick=function(){
   }
   saveDetails();
   var msg=["Hi Sweetness! I'd like to place an order:",""];
+  var cd=countdownLine(v.dt,v.md);if(cd)msg.push(cd,"");
   cart.forEach(function(l,i){var it=BY_ID[l.id];msg.push((i+1)+". "+label(l)+" ["+unitOf(it)+"] x "+l.qty+" = "+rs(l.qty*it.price))});
   msg.push("","Total: "+rs(t.total)+" ("+t.count+" item"+(t.count===1?"":"s")+")","");
   msg.push("Name: "+v.nm);
   msg.push("Mobile: +91 "+v.ph.slice(0,5)+" "+v.ph.slice(5));
   msg.push("Order type: "+v.md);
   if(v.md==="Delivery")msg.push("Delivery address: "+v.ad.split(/\n+/).map(function(s){return s.trim().replace(/,+$/,"")}).filter(Boolean).join(", "));
-  msg.push("Needed on: "+fmtDate(v.dt));
+  if(v.dt)msg.push("Needed on: "+fmtDate(v.dt));
   var nt=$("fNote").value.trim();if(nt)msg.push("Note: "+nt);
   msg.push("Payment: UPI ("+UPI+")");
   window.open(wa(msg.join("\n")),"_blank","noopener");
