@@ -9,3 +9,4 @@ Live site: https://sweetness-bytes.github.io
 - To update chocolate prices or items, edit the `MENU` list inside `index.html` (box sizes: 6 pcs, 10 pcs/100 g, 20 pcs/200 g). Make Your Own Bar price is the `mk-bar` entry.
 - IZYAN Attar & Perfumes: product data is the `IZ` list in `index.html` (12 ml attar = PDF price + 10%, 50 ml perfume = attar price + Rs 150); photos are in `izyan/`.
 - PWA: `manifest.webmanifest`, `sw.js` (offline cache, version updates on every build) and app icons in `icons/`.
+- Diwali Faral tab: items are the `FARAL` list in `index.html`; set `FARAL_OPEN=true` and add prices to open pre-orders. Photos and header collage are in `faral/`.

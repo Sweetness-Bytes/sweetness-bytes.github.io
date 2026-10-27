@@ -91,7 +91,7 @@ a{color:inherit}
 /* ---------- tabs ---------- */
 :root{--hh:116px}
 html{scroll-padding-top:calc(var(--hh) + 64px)}
-.tabs{max-width:1120px;margin:0 auto;padding:0 10px 10px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.tabs{max-width:1120px;margin:0 auto;padding:0 10px 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .tab{position:relative;display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:6px;border-radius:12px;text-decoration:none;color:#f3e3e7;font-size:.82rem;font-weight:500;background:rgba(255,255,255,.06);border:1px solid rgba(241,223,168,.2);white-space:nowrap;transition:background .2s,color .2s}
 .tab i{font-style:normal;font-size:1.05rem}
 .tab:hover{background:rgba(255,255,255,.12)}
@@ -328,6 +328,38 @@ select{width:100%;appearance:none;-webkit-appearance:none;background:#fff url("d
 .mk-add[disabled]{opacity:.55;cursor:not-allowed}
 @media (min-width:860px){.mk{grid-template-columns:1fr 1.1fr;padding:24px;gap:30px;align-items:center}.mk-prev{height:100%;justify-content:center;padding:40px 24px}}
 
+/* ---------- Diwali faral ---------- */
+.fr{margin:0 calc(50% - 50vw);padding:44px 16px 52px;background:radial-gradient(circle at 15% 0%,rgba(245,166,35,.35),transparent 40%),radial-gradient(circle at 90% 100%,rgba(217,67,107,.25),transparent 45%),linear-gradient(180deg,#4a0d1f,#2a0612);color:#fff;scroll-margin-top:var(--hh)}
+.fr-head{position:relative;isolation:isolate;overflow:hidden;margin:-44px -16px 28px;padding:64px 16px 48px;text-align:center}
+.fr-head::before{content:"";position:absolute;inset:0;z-index:-2;background:#2a0612 url("faral/collage.webp") center/cover;animation:zoom 18s ease-out both}
+.fr-head::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,rgba(42,6,18,.62) 0%,rgba(42,6,18,.78) 55%,rgba(42,6,18,.9) 100%),linear-gradient(180deg,rgba(42,6,18,.2) 60%,#3d0b1b 100%)}
+.fr-head>*{position:relative;max-width:640px;margin-left:auto;margin-right:auto}
+.fr-head .btn{max-width:none}
+.fr-diya{font-size:2.6rem;line-height:1;filter:drop-shadow(0 0 14px rgba(255,190,80,.8));animation:float 3.5s ease-in-out infinite}
+.fr-mr{font-size:1.15rem;color:#FFC861;font-weight:600;margin-top:10px;letter-spacing:.04em}
+.fr-head h2{font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(2.8rem,11vw,4.6rem);line-height:1;margin:4px auto 10px;background:linear-gradient(180deg,#FFE3A3,#F5A623);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.fr-head p{font-size:.92rem;color:#fbe9ee;margin-bottom:18px;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.fr-soon{display:inline-block;margin:6px 0 4px;font-size:.78rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#3a0a16;background:linear-gradient(135deg,#FFC861,#F5A623);border-radius:999px;padding:8px 18px}
+.fr-head p.fr-big{font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,5vw,1.9rem);color:#fff;line-height:1.25;margin:12px auto 6px}
+.frc .soon-tag{align-self:flex-start;font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C2410C;background:#FFF1DE;border:1px dashed #F5A623;border-radius:999px;padding:5px 10px}
+.frc .im{position:relative}
+.frc .im span{position:absolute;top:8px;left:8px;font-size:.58rem;font-weight:700;letter-spacing:.12em;background:#E8731C;color:#fff;border-radius:999px;padding:3px 8px}
+.fr-grid{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.frc{background:#fffaf1;color:var(--ink);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;border:2px solid transparent;box-shadow:0 8px 22px rgba(0,0,0,.25);transition:border-color .2s}
+.frc.has{border-color:#F5A623}
+.frc img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block}
+.frc .bd{padding:10px 10px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.frc .mr{font-size:.8rem;color:#C2410C;font-weight:600}
+.frc h3{font-family:var(--display);font-size:1.02rem;color:var(--deep);line-height:1.2}
+.frc .ds{font-size:.72rem;color:var(--muted);line-height:1.4}
+.frc .ft{margin-top:auto;padding-top:8px;display:flex;flex-direction:column;gap:8px}
+.frc .pr{font-weight:600;color:var(--rose);font-size:.92rem}
+.frc .pr small{font-weight:400;color:var(--muted);font-size:.7rem}
+.frc .ctrl{display:flex}
+.fr-foot{text-align:center;font-size:.76rem;color:#f0cdd6;margin-top:22px}
+.tab .tb.dw{background:#E8731C}
+@media (min-width:640px){.fr-grid{grid-template-columns:repeat(3,1fr);gap:16px}.frc .bd{padding:14px}.frc .ft{flex-direction:row;align-items:center;justify-content:space-between}}
+
 /* ---------- custom / festival ---------- */
 .special{display:grid;grid-template-columns:1fr;gap:14px}
 .sp{position:relative;border-radius:var(--r);overflow:hidden;min-height:230px;display:flex;align-items:flex-end;color:#fff;box-shadow:var(--shadow)}
@@ -493,6 +525,7 @@ body.has-cart .fab{display:none}
   </div>
   <div class="tabs" role="tablist" aria-label="Shop sections">
     <a class="tab on" id="tab-chocolates" role="tab" aria-selected="true" aria-controls="panel-chocolates" href="#chocolates" data-tab="chocolates"><i aria-hidden="true">🍫</i><span>Chocolates</span></a>
+    <a class="tab" id="tab-faral" role="tab" aria-selected="false" aria-controls="panel-faral" href="#faral" data-tab="faral"><i aria-hidden="true">🪔</i><span class="lg">Diwali Faral</span><span class="sm">Faral</span><b class="tb dw">SOON</b></a>
     <a class="tab" id="tab-attar" role="tab" aria-selected="false" aria-controls="panel-attar" href="#attar" data-tab="attar"><i aria-hidden="true">🧴</i><span class="lg">Attar &amp; Perfumes</span><span class="sm">Attar</span><b class="tb new">NEW</b></a>
     <a class="tab" id="tab-cakes" role="tab" aria-selected="false" aria-controls="panel-cakes" href="#cakes" data-tab="cakes"><i aria-hidden="true">🎂</i><span class="lg">Cakes &amp; Pastries</span><span class="sm">Cakes</span><b class="tb">SOON</b></a>
   </div>
@@ -648,6 +681,22 @@ body.has-cart .fab{display:none}
       <div class="iz-foot">Prices subject to change · Instagram @izyan.attar</div>
     </div>
   </section>
+  </div>
+
+  <div class="panel" id="panel-faral" data-panel="faral" role="tabpanel" aria-labelledby="tab-faral" hidden>
+    <section class="fr" aria-labelledby="frTitle">
+      <div class="fr-head">
+        <div class="fr-diya" aria-hidden="true">🪔</div>
+        <div class="fr-mr" lang="mr">दिवाळी फराळ</div>
+        <h2 id="frTitle">Diwali Faral</h2>
+        <div class="fr-soon">Coming soon</div>
+        <p class="fr-big">Pre-orders will be starting soon!</p>
+        <p>Homemade festive sweets &amp; snacks, made fresh for Diwali. Stay tuned with us.</p>
+        <a class="btn btn-gold" data-wa="Hi Sweetness! Please let me know when Diwali faral pre-orders start." href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.75 13.57L3 21l4.56-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 7.6c.3 0 .5.1.6.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.4.4.6 0 1.2-1 2-2.2 2-3.4-.3-6.7-3.6-7-7 0-1.2.8-2.1 2.1-2.1z" fill="currentColor"/></svg>Notify me on WhatsApp</a>
+      </div>
+      <div class="fr-grid" id="frGrid"></div>
+      <p class="fr-foot">Made in small batches at home · Pre-orders opening soon</p>
+    </section>
   </div>
 
   <div class="panel" id="panel-cakes" data-panel="cakes" role="tabpanel" aria-labelledby="tab-cakes" hidden>
@@ -863,7 +912,7 @@ function pickItem(it){
   else sel='<div class="picks two"><label>Half 1<select data-f="'+it.id+'">'+opts("Dark")+'</select></label><label>Half 2<select data-f="'+it.id+'">'+opts("White")+'</select></label></div>';
   return '<div class="item col" data-id="'+it.id+'"><div class="row1"><div class="info"><div class="nm">'+esc(it.name)+'</div><div class="meta">100 g · choose '+(it.pick===1?"a flavour":"two flavours")+'</div><div class="pr">'+rs(it.price)+'</div></div><button class="add" type="button" data-pick="'+it.id+'">'+PLUS+'Add</button></div>'+sel+'<div class="added-msg" data-msg="'+it.id+'"></div></div>';
 }
-$("chips").innerHTML=MENU.map(function(c,i){return '<a class="chip'+(i===0?' on':'')+'" href="#cat-'+c.id+'" data-chip="'+c.id+'">'+esc(c.chip)+'</a>'}).join("")+'<a class="chip" href="#make">✨ Make your own bar</a><a class="chip soon" href="#cakes">🎂 Cakes &amp; Pastries<b>SOON</b></a>';
+$("chips").innerHTML=MENU.map(function(c,i){return '<a class="chip'+(i===0?' on':'')+'" href="#cat-'+c.id+'" data-chip="'+c.id+'">'+esc(c.chip)+'</a>'}).join("")+'<a class="chip" href="#make">✨ Make your own bar</a><a class="chip soon" href="#faral">🪔 Diwali Faral</a><a class="chip soon" href="#cakes">🎂 Cakes &amp; Pastries<b>SOON</b></a>';
 $("cats").innerHTML=MENU.map(function(c){
   return '<div class="cat rv" id="cat-'+c.id+'"><div class="cat-banner"><div class="ph '+c.img+'" role="img" aria-label="'+esc(c.title)+'"></div><div class="t"><h3>'+esc(c.title)+'</h3><span class="note">'+esc(c.note)+'</span><p>'+esc(c.desc)+'</p></div></div><div class="grid">'+
     c.items.map(function(it){return it.sizes?sizeItem(it):it.pick?pickItem(it):simpleItem(it)}).join("")+'</div></div>';
@@ -878,6 +927,7 @@ function ctrlHTML(id){
 function render(){
   var t=totals();
   document.querySelectorAll("[data-ctrl]").forEach(function(el){el.innerHTML=ctrlHTML(el.getAttribute("data-ctrl"))});
+  document.querySelectorAll(".frc").forEach(function(el){el.classList.toggle("has",qtyOf(el.getAttribute("data-id"))>0)});
   document.querySelectorAll(".item").forEach(function(el){var id=el.getAttribute("data-id");el.classList.toggle("has",(el.hasAttribute("data-base")?qtyBase(id):qtyOf(id))>0)});
   document.querySelectorAll("[data-msgs]").forEach(function(el){var id=el.getAttribute("data-msgs"),m=[];SIZES.forEach(function(s){var q=qtyOf(id+"-"+s.k);if(q)m.push(q+" × "+s.label)});el.textContent=m.length?"✓ "+m.join(", ")+" in your order":""});
   document.querySelectorAll("[data-izc]").forEach(function(el){var s=el.getAttribute("data-izc"),qa=qtyOf("iz-"+s+"-a"),qp=qtyOf("iz-"+s+"-p");el.classList.toggle("has",qa+qp>0);var m=[];if(qa)m.push(qa+" attar");if(qp)m.push(qp+" perfume");el.querySelector(".ok").textContent=m.length?"✓ "+m.join(" + ")+" in order":""});
@@ -1041,7 +1091,7 @@ drawIz();
   var seen=false;try{seen=sessionStorage.getItem("izpop")==="1"}catch(e){}
   function hide(){$("izpop").classList.remove("show");try{sessionStorage.setItem("izpop","1")}catch(e){}}
   $("izx").onclick=hide;$("izgo").addEventListener("click",hide);
-  if(!seen)setTimeout(function(){if(window.scrollY<500)$("izpop").classList.add("show")},1200);
+  if(!seen)setTimeout(function(){if(window.scrollY<500&&curTab==="chocolates")$("izpop").classList.add("show")},1200);
   setTimeout(function(){if($("izpop").classList.contains("show"))hide()},12000);
   window.addEventListener("scroll",function(){if(window.scrollY>500&&$("izpop").classList.contains("show"))hide()},{passive:true});
 })();
@@ -1105,8 +1155,30 @@ drawIz();
   $("iosSheet").addEventListener("click",function(e){if(e.target===this)this.hidden=true});
 })();
 
+/* ---------- Diwali faral ---------- */
+/* price: Rs per unit (null = price on request) */
+var FARAL=[
+  {id:"fr-shankarpali",mr:"शंकरपाळी",name:"Shankarpali",desc:"Crisp, sweet diamond-shaped bites.",img:"shankarpali",price:null,unit:""},
+  {id:"fr-ladoo",mr:"बेसन लाडू",name:"Besan Ladoo",desc:"Melt-in-the-mouth ladoos topped with dry fruits.",img:"ladoo",price:null,unit:""},
+  {id:"fr-rava-ladoo",mr:"रवा लाडू",name:"Rava Ladoo",desc:"Soft semolina ladoos with cashews and raisins.",img:"rava-ladoo",price:null,unit:""},
+  {id:"fr-karanji",mr:"करंजी",name:"Karanji",desc:"Flaky crescent pastries with a sweet coconut filling.",img:"karanji",price:null,unit:""},
+  {id:"fr-chivda",mr:"चिवडा",name:"Chivda",desc:"Crunchy, spiced poha mix with peanuts, cashews and curry leaves.",img:"chivda",price:null,unit:""},
+  {id:"fr-nankhatai",mr:"नानकटाई",name:"Nankhatai",desc:"Buttery, crumbly cookies with pistachio and almond.",img:"nankhatai",price:null,unit:""},
+  {id:"fr-chakli",mr:"चकली",name:"Chakli",desc:"Crispy spiral snack with sesame.",img:"chakli",price:null,unit:""}
+];
+var FARAL_OPEN=false;
+FARAL.forEach(function(f){if(FARAL_OPEN&&f.price)BY_ID[f.id]={id:f.id,name:f.name,price:f.price,cat:"faral",unit:f.unit}});
+$("frGrid").innerHTML=FARAL.map(function(f){
+  /* While FARAL_OPEN is false the items show as "coming soon"; set it true and add prices to start pre-orders. */
+  var foot=FARAL_OPEN&&f.price
+    ?'<div class="pr">'+rs(f.price)+' <small>/ '+esc(f.unit)+'</small></div><div class="ctrl" data-ctrl="'+f.id+'"></div>'
+    :'<span class="soon-tag">Pre-orders soon</span>';
+  return '<article class="frc" data-id="'+f.id+'"><div class="im"><img src="faral/'+f.img+'.webp" alt="'+esc(f.name)+'" loading="lazy" width="800" height="600">'+(FARAL_OPEN?'':'<span>COMING SOON</span>')+'</div><div class="bd"><div class="mr" lang="mr">'+f.mr+'</div><h3>'+esc(f.name)+'</h3><p class="ds">'+esc(f.desc)+'</p><div class="ft">'+foot+'</div></div></article>';
+}).join("");
+render();
+
 /* ---------- tabs / router ---------- */
-var TABS=["chocolates","attar","cakes"];
+var TABS=["chocolates","faral","attar","cakes"];
 var HASH_TAB={top:"chocolates",menu:"chocolates",make:"chocolates",special:"chocolates",izyan:"attar"};
 var curTab="chocolates";
 function setHeaderVar(){var h=document.querySelector(".top").offsetHeight;document.documentElement.style.setProperty("--hh",h+"px")}
@@ -1121,7 +1193,7 @@ function showTab(tab){
   curTab=tab;
   document.querySelectorAll("[data-panel]").forEach(function(p){p.hidden=p.getAttribute("data-panel")!==tab});
   document.querySelectorAll("[data-tab]").forEach(function(a){var on=a.getAttribute("data-tab")===tab;a.classList.toggle("on",on);a.setAttribute("aria-selected",on)});
-  if(tab==="attar"&&$("izpop").classList.contains("show"))$("izx").click();
+  if($("izpop").classList.contains("show"))$("izx").click();
 }
 function go(h,push){
   var tab=tabFor(h);
