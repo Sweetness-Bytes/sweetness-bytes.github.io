@@ -176,6 +176,9 @@ section{padding-top:48px}
 .item .pr{font-weight:600;color:var(--rose);font-size:.92rem;margin-top:3px}
 .item.col{flex-direction:column;align-items:stretch}
 .item.col .row1{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.item.col .row1 .info{flex:1}
+.fth{width:72px;height:72px;border-radius:14px;object-fit:cover;flex:0 0 auto;border:2px solid #fff;box-shadow:0 4px 12px rgba(58,8,23,.2)}
+@media (max-width:360px){.fth{width:60px;height:60px}}
 .picks{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
 .picks.two{grid-template-columns:1fr 1fr}
 .pr .pnote{font-weight:400;font-size:.7rem;color:var(--muted)}
@@ -868,12 +871,12 @@ var MENU=[
   {id:"single",title:"Single flavour chocolates",chip:"Chocolate boxes",note:"6 · 10 · 20 piece boxes",img:"i-cups",
    desc:"Pick a flavour and a box size: 6 pcs, 10 pcs (100 g) or 20 pcs (200 g).",
    items:[
-    {id:"s-dark",name:"Dark Chocolate",sizes:[100,200,350]},
-    {id:"s-milk",name:"Milk Chocolate",sizes:[80,150,250]},
-    {id:"s-white",name:"White Chocolate",sizes:[80,150,250]},
-    {id:"s-crispy",name:"Crispy Chocolate",sizes:[80,150,250]},
-    {id:"s-tutti",name:"Tutti Frutti Chocolate",sizes:[80,150,250]},
-    {id:"s-dry",name:"Dry Fruit Chocolate",sizes:[110,200,300]}
+    {id:"s-dark",name:"Dark Chocolate",img:"dark",sizes:[100,200,350]},
+    {id:"s-milk",name:"Milk Chocolate",img:"milk",sizes:[80,150,250]},
+    {id:"s-white",name:"White Chocolate",img:"white",sizes:[80,150,250]},
+    {id:"s-crispy",name:"Crispy Chocolate",img:"crispy",sizes:[80,150,250]},
+    {id:"s-tutti",name:"Tutti Frutti Chocolate",img:"tutti",sizes:[80,150,250]},
+    {id:"s-dry",name:"Dry Fruit Chocolate",img:"dryfruit",sizes:[110,200,300]}
    ]},
   {id:"bars",title:"Chocolate bars",chip:"Chocolate bars",note:"Per 100 g bar",img:"i-pattern",
    desc:"One flavour or half n half. Want your own words on a bar? See Make Your Own Bar below.",
@@ -936,7 +939,7 @@ function simpleItem(it){
 }
 function sizeItem(it){
   var btns=SIZES.map(function(s,n){return '<button type="button" class="'+(n===0?'on':'')+'" aria-pressed="'+(n===0)+'" data-sz="'+it.id+'-'+s.k+'"><small>'+s.label+'</small><b>'+rs(it.sizes[n])+'</b></button>'}).join("");
-  return '<div class="item col" data-id="'+it.id+'" data-base="'+it.id+'"><div class="row1"><div class="info"><div class="nm">'+esc(it.name)+'</div><div class="meta">Choose box size</div><div class="pr" data-pr="'+it.id+'">'+rs(it.sizes[0])+' · 6 pcs</div></div><div class="ctrl" data-ctrl="'+it.id+'-6"></div></div><div class="sizes">'+btns+'</div><div class="added-msg" data-msgs="'+it.id+'"></div></div>';
+  return '<div class="item col" data-id="'+it.id+'" data-base="'+it.id+'"><div class="row1">'+(it.img?'<img class="fth" src="flavours/'+it.img+'.webp" alt="'+esc(it.name)+'" width="240" height="240" loading="lazy">':'')+'<div class="info"><div class="nm">'+esc(it.name)+'</div><div class="meta">Choose box size</div><div class="pr" data-pr="'+it.id+'">'+rs(it.sizes[0])+' · 6 pcs</div></div><div class="ctrl" data-ctrl="'+it.id+'-6"></div></div><div class="sizes">'+btns+'</div><div class="added-msg" data-msgs="'+it.id+'"></div></div>';
 }
 function pickItem(it){
   var sel='';
