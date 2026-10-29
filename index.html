@@ -178,6 +178,7 @@ section{padding-top:48px}
 .item.col .row1{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .picks{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
 .picks.two{grid-template-columns:1fr 1fr}
+.pr .pnote{font-weight:400;font-size:.7rem;color:var(--muted)}
 .picks label{font-size:.68rem;color:var(--muted);font-weight:500;display:flex;flex-direction:column;gap:4px}
 select{width:100%;appearance:none;-webkit-appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235C0E28' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 10px center/10px;border:1px solid var(--cream-2);border-radius:10px;padding:9px 28px 9px 10px;font-size:.8rem;color:var(--deep)}
 .sizes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
@@ -326,6 +327,23 @@ select{width:100%;appearance:none;-webkit-appearance:none;background:#fff url("d
 .mk-hint{font-size:.72rem;color:var(--muted);margin-top:8px}
 .mk-add{width:100%;padding:14px;font-size:.92rem}
 .mk-add[disabled]{opacity:.55;cursor:not-allowed}
+.mk-real{margin-top:26px}
+.mk-real-h{text-align:center;margin-bottom:16px}
+.mk-real-h span{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--rose);font-weight:600}
+.mk-real-h h3{font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(1.6rem,5.5vw,2.1rem);color:var(--maroon);line-height:1.1;margin-top:2px}
+.mk-real-h p{font-size:.8rem;color:var(--muted);margin-top:4px}
+.mk-gal{display:grid;grid-template-columns:1fr;gap:14px}
+.rb{margin:0;background:var(--paper);border:1px solid var(--cream-2);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.rb-ph{position:relative;aspect-ratio:16/10;background:radial-gradient(circle at 30% 20%,#6a1d36,var(--deep) 75%)}
+.rb-ph::before{content:"";position:absolute;inset:10px;border:1px dashed rgba(241,223,168,.35);border-radius:12px;pointer-events:none}
+.rb-ph img{position:absolute;inset:20px;width:calc(100% - 40px);height:calc(100% - 40px);object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.55));transform:rotate(-2deg);transition:transform .4s}
+.rb:nth-child(2) .rb-ph img{transform:rotate(2deg)}
+.rb:hover .rb-ph img{transform:rotate(0) scale(1.03)}
+.rb figcaption{padding:12px 14px 14px}
+.rb figcaption b{display:block;font-family:var(--display);color:var(--deep);font-size:.98rem}
+.rb figcaption span{font-size:.74rem;color:var(--muted)}
+.mk-real-note{text-align:center;font-size:.7rem;color:var(--muted);margin-top:12px}
+@media (min-width:700px){.mk-gal{grid-template-columns:repeat(3,1fr)}}
 @media (min-width:860px){.mk{grid-template-columns:1fr 1.1fr;padding:24px;gap:30px;align-items:center}.mk-prev{height:100%;justify-content:center;padding:40px 24px}}
 
 /* ---------- Diwali faral ---------- */
@@ -601,7 +619,7 @@ body.has-cart .fab{display:none}
       <div class="mk rv">
         <div class="mk-prev">
           <div class="mk-bar" id="mkBar" data-f="Milk" aria-hidden="true"><div class="mk-txt ph-txt" id="mkTxt">Your words here</div></div>
-          <div class="mk-price"><b>Rs 180</b><span>100 g bar · made to order</span></div>
+          <div class="mk-price"><b id="mkPr">Rs 180</b><span id="mkPrNote">100 g bar · made to order</span></div>
         </div>
         <div class="mk-form">
           <div class="mk-step">
@@ -622,6 +640,15 @@ body.has-cart .fab{display:none}
           </div>
           <button class="btn btn-maroon mk-add" id="mkAdd" type="button" disabled>Choose a chocolate to start</button>
         </div>
+      </div>
+      <div class="mk-real">
+        <div class="mk-real-h"><span>Handmade by us</span><h3>Real bars we've made</h3><p>Every bar is made by hand, so yours will be one of a kind.</p></div>
+        <div class="mk-gal">
+          <figure class="rb rv"><div class="rb-ph"><img src="mybar/mb-rutika.webp" alt="Milk chocolate bar with white letters reading I Love You Rutika and pink hearts" loading="lazy" width="900" height="426"></div><figcaption><b>“I Love You” + name</b><span>Milk chocolate · white chocolate letters · hearts</span></figcaption></figure>
+          <figure class="rb rv"><div class="rb-ph"><img src="mybar/mb-love.webp" alt="Pink heart-textured bar with LOVE written in chocolate, hearts and roses" loading="lazy" width="900" height="396"></div><figcaption><b>Pink “LOVE” bar</b><span>Rose chocolate · heart texture · roses &amp; hearts</span></figcaption></figure>
+          <figure class="rb rv"><div class="rb-ph"><img src="mybar/mb-iloveyou.webp" alt="Three bars in white, pink and milk chocolate spelling I, LOVE, YOU" loading="lazy" width="820" height="575"></div><figcaption><b>I · LOVE · YOU set</b><span>Three bars · white, rose &amp; milk chocolate</span></figcaption></figure>
+        </div>
+        <p class="mk-real-note">Photos of past orders. Decorations may vary slightly.</p>
       </div>
     </section>
 
@@ -841,7 +868,7 @@ var MENU=[
   {id:"single",title:"Single flavour chocolates",chip:"Chocolate boxes",note:"6 · 10 · 20 piece boxes",img:"i-cups",
    desc:"Pick a flavour and a box size: 6 pcs, 10 pcs (100 g) or 20 pcs (200 g).",
    items:[
-    {id:"s-dark",name:"Dark Chocolate",sizes:[80,150,250]},
+    {id:"s-dark",name:"Dark Chocolate",sizes:[100,200,350]},
     {id:"s-milk",name:"Milk Chocolate",sizes:[80,150,250]},
     {id:"s-white",name:"White Chocolate",sizes:[80,150,250]},
     {id:"s-crispy",name:"Crispy Chocolate",sizes:[80,150,250]},
@@ -851,8 +878,8 @@ var MENU=[
   {id:"bars",title:"Chocolate bars",chip:"Chocolate bars",note:"Per 100 g bar",img:"i-pattern",
    desc:"One flavour or half n half. Want your own words on a bar? See Make Your Own Bar below.",
    items:[
-    {id:"b-single",name:"Single Flavour Bar",price:120,pick:1},
-    {id:"b-half",name:"Half n Half Bar",price:130,pick:2},
+    {id:"b-single",name:"Single Flavour Bar",price:120,pick:1,flavourPrice:{Dark:200}},
+    {id:"b-half",name:"Half n Half Bar",price:130,pick:2,exclude:["Dark"]},
     {id:"b-festival",name:"Festival Special Chocolate Bar",price:180}
    ]}
 ];
@@ -863,12 +890,17 @@ var BY_ID={};MENU.forEach(function(c){c.items.forEach(function(i){
   i.cat=c.id;
   if(i.sizes)SIZES.forEach(function(s,n){BY_ID[i.id+"-"+s.k]={id:i.id+"-"+s.k,name:i.name,price:i.sizes[n],cat:c.id,unit:s.unit}});
   else BY_ID[i.id]=i;
+  if(i.flavourPrice)Object.keys(i.flavourPrice).forEach(function(f){var vid=i.id+"-"+f.toLowerCase();BY_ID[vid]={id:vid,name:i.name,price:i.flavourPrice[f],cat:c.id}});
 })});
+function pickPrice(it,f){return (it.flavourPrice&&it.flavourPrice[f])||it.price}
 IZ.forEach(function(r){
   BY_ID["iz-"+r[0]+"-a"]={id:"iz-"+r[0]+"-a",name:"IZYAN "+r[1]+" Attar",price:r[4],cat:"izyan",unit:"12 ml attar"};
   BY_ID["iz-"+r[0]+"-p"]={id:"iz-"+r[0]+"-p",name:"IZYAN "+r[1]+" Perfume",price:r[5],cat:"izyan",unit:"50 ml perfume"};
 });
-BY_ID["mk-bar"]={id:"mk-bar",name:"Make Your Own Bar",price:180,cat:"make",unit:"100 g bar"};
+var MK_PRICE={Dark:280},MK_BASE=180;
+BY_ID["mk-bar"]={id:"mk-bar",name:"Make Your Own Bar",price:MK_BASE,cat:"make",unit:"100 g bar"};
+Object.keys(MK_PRICE).forEach(function(f){BY_ID["mk-bar-"+f.toLowerCase()]={id:"mk-bar-"+f.toLowerCase(),name:"Make Your Own Bar",price:MK_PRICE[f],cat:"make",unit:"100 g bar"}});
+function mkPrice(f){return MK_PRICE[f]||MK_BASE}
 function unitOf(it){return it.unit||UNIT[it.cat]}
 
 var WA_ICON="<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3a9 9 0 0 0-7.75 13.57L3 21l4.56-1.2A9 9 0 1 0 12 3z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\"/><path d=\"M9.2 7.6c.3 0 .5.1.6.4l.8 1.8c.1.3 0 .5-.1.7l-.6.7c.6 1.2 1.6 2.2 2.8 2.8l.7-.6c.2-.2.5-.2.7-.1l1.8.8c.3.1.4.4.4.6 0 1.2-1 2-2.2 2-3.4-.3-6.7-3.6-7-7 0-1.2.8-2.1 2.1-2.1z\" fill=\"currentColor\"/></svg>";
@@ -894,10 +926,10 @@ function add(id,fl,n){
 }
 function setQty(key,q){var l=find(key);if(!l)return;l.qty=q;cart=cart.filter(function(x){return x.qty>0});save();render()}
 function totals(){var c=0,t=0;cart.forEach(function(l){c+=l.qty;t+=l.qty*BY_ID[l.id].price});return{count:c,total:t}}
-function label(l){var it=BY_ID[l.id];return it.name+(l.flavors.length?" ("+l.flavors.join(l.id==="mk-bar"?" · ":" + ")+")":"")}
+function label(l){var it=BY_ID[l.id];return it.name+(l.flavors.length?" ("+l.flavors.join(l.id.indexOf("mk-bar")===0?" · ":" + ")+")":"")}
 
 /* ---------- build menu ---------- */
-function opts(sel){return FLAVORS.map(function(f){return '<option'+(f===sel?' selected':'')+'>'+esc(f)+'</option>'}).join("")}
+function opts(sel,ex){return FLAVORS.filter(function(f){return !ex||ex.indexOf(f)<0}).map(function(f){return '<option'+(f===sel?' selected':'')+'>'+esc(f)+'</option>'}).join("")}
 var PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
 function simpleItem(it){
   return '<div class="item" data-id="'+it.id+'"><div class="info"><div class="nm">'+esc(it.name)+'</div><div class="meta">'+unitOf(it)+'</div><div class="pr">'+rs(it.price)+'</div></div><div class="ctrl" data-ctrl="'+it.id+'"></div></div>';
@@ -909,14 +941,20 @@ function sizeItem(it){
 function pickItem(it){
   var sel='';
   if(it.pick===1)sel='<div class="picks"><label>Flavour<select data-f="'+it.id+'">'+opts("Dark")+'</select></label></div>';
-  else sel='<div class="picks two"><label>Half 1<select data-f="'+it.id+'">'+opts("Dark")+'</select></label><label>Half 2<select data-f="'+it.id+'">'+opts("White")+'</select></label></div>';
-  return '<div class="item col" data-id="'+it.id+'"><div class="row1"><div class="info"><div class="nm">'+esc(it.name)+'</div><div class="meta">100 g · choose '+(it.pick===1?"a flavour":"two flavours")+'</div><div class="pr">'+rs(it.price)+'</div></div><button class="add" type="button" data-pick="'+it.id+'">'+PLUS+'Add</button></div>'+sel+'<div class="added-msg" data-msg="'+it.id+'"></div></div>';
+  else sel='<div class="picks two"><label>Half 1<select data-f="'+it.id+'">'+opts("White",it.exclude)+'</select></label><label>Half 2<select data-f="'+it.id+'">'+opts("Milk",it.exclude)+'</select></label></div>';
+  return '<div class="item col" data-id="'+it.id+'"><div class="row1"><div class="info"><div class="nm">'+esc(it.name)+'</div><div class="meta">100 g · choose '+(it.pick===1?"a flavour":"two flavours")+'</div><div class="pr" data-ppr="'+it.id+'">'+rs(it.pick===1?pickPrice(it,"Dark"):it.price)+(it.flavourPrice?' <small class="pnote">('+Object.keys(it.flavourPrice).map(function(f){return f+" "+rs(it.flavourPrice[f])}).join(", ")+' · others '+rs(it.price)+')</small>':'')+'</div></div><button class="add" type="button" data-pick="'+it.id+'">'+PLUS+'Add</button></div>'+sel+'<div class="added-msg" data-msg="'+it.id+'"></div></div>';
 }
 $("chips").innerHTML=MENU.map(function(c,i){return '<a class="chip'+(i===0?' on':'')+'" href="#cat-'+c.id+'" data-chip="'+c.id+'">'+esc(c.chip)+'</a>'}).join("")+'<a class="chip" href="#make">✨ Make your own bar</a><a class="chip soon" href="#faral">🪔 Diwali Faral</a><a class="chip soon" href="#cakes">🎂 Cakes &amp; Pastries<b>SOON</b></a>';
 $("cats").innerHTML=MENU.map(function(c){
   return '<div class="cat rv" id="cat-'+c.id+'"><div class="cat-banner"><div class="ph '+c.img+'" role="img" aria-label="'+esc(c.title)+'"></div><div class="t"><h3>'+esc(c.title)+'</h3><span class="note">'+esc(c.note)+'</span><p>'+esc(c.desc)+'</p></div></div><div class="grid">'+
     c.items.map(function(it){return it.sizes?sizeItem(it):it.pick?pickItem(it):simpleItem(it)}).join("")+'</div></div>';
 }).join("");
+
+document.addEventListener("change",function(e){
+  var s=e.target.closest("select[data-f]");if(!s)return;
+  var it=BY_ID[s.getAttribute("data-f")];if(!it||it.pick!==1)return;
+  var pr=document.querySelector('[data-ppr="'+it.id+'"]');if(pr)pr.firstChild.nodeValue=rs(pickPrice(it,s.value))+" ";
+});
 
 /* ---------- render ---------- */
 function ctrlHTML(id){
@@ -928,10 +966,10 @@ function render(){
   var t=totals();
   document.querySelectorAll("[data-ctrl]").forEach(function(el){el.innerHTML=ctrlHTML(el.getAttribute("data-ctrl"))});
   document.querySelectorAll(".frc").forEach(function(el){el.classList.toggle("has",qtyOf(el.getAttribute("data-id"))>0)});
-  document.querySelectorAll(".item").forEach(function(el){var id=el.getAttribute("data-id");el.classList.toggle("has",(el.hasAttribute("data-base")?qtyBase(id):qtyOf(id))>0)});
+  document.querySelectorAll(".item").forEach(function(el){var id=el.getAttribute("data-id");el.classList.toggle("has",(qtyOf(id)+qtyBase(id))>0)});
   document.querySelectorAll("[data-msgs]").forEach(function(el){var id=el.getAttribute("data-msgs"),m=[];SIZES.forEach(function(s){var q=qtyOf(id+"-"+s.k);if(q)m.push(q+" × "+s.label)});el.textContent=m.length?"✓ "+m.join(", ")+" in your order":""});
   document.querySelectorAll("[data-izc]").forEach(function(el){var s=el.getAttribute("data-izc"),qa=qtyOf("iz-"+s+"-a"),qp=qtyOf("iz-"+s+"-p");el.classList.toggle("has",qa+qp>0);var m=[];if(qa)m.push(qa+" attar");if(qp)m.push(qp+" perfume");el.querySelector(".ok").textContent=m.length?"✓ "+m.join(" + ")+" in order":""});
-  document.querySelectorAll("[data-msg]").forEach(function(el){var q=qtyOf(el.getAttribute("data-msg"));el.textContent=q?"✓ "+q+" in your order":""});
+  document.querySelectorAll("[data-msg]").forEach(function(el){var id=el.getAttribute("data-msg"),q=qtyOf(id)+qtyBase(id);el.textContent=q?"✓ "+q+" in your order":""});
   var itemsTxt=t.count+" item"+(t.count===1?"":"s");
   $("hdrCount").textContent=t.count;$("hdrCount").setAttribute("data-n",t.count);
   $("barItems").textContent=itemsTxt+" in your order";$("barTotal").textContent=rs(t.total);
@@ -960,7 +998,8 @@ document.addEventListener("click",function(e){
   else if((id=b.getAttribute("data-dec"))){incSimple(id,-1)}
   else if((id=b.getAttribute("data-pick"))){
     var fl=[].map.call(document.querySelectorAll('[data-f="'+id+'"]'),function(s){return s.value});
-    add(id,fl,1);toast("Added to your order ✓");
+    var it0=BY_ID[id],vid=it0.flavourPrice&&it0.flavourPrice[fl[0]]?id+"-"+fl[0].toLowerCase():id;
+    add(vid,fl,1);toast("Added to your order ✓");
   }
   else if((id=b.getAttribute("data-sz"))){
     var card=b.closest("[data-base]"),base=card.getAttribute("data-base"),v=BY_ID[id];
@@ -1108,7 +1147,8 @@ drawIz();
     txt.textContent=v||"Your words here";txt.classList.toggle("ph-txt",!v);
     $("mkCount").textContent=inp.value.length+"/"+MAX;
     btn.disabled=!(fl&&v);
-    btn.textContent=!fl?"Choose a chocolate to start":!v?"Type your message to add":"Add to order · Rs 180";
+    var pr=mkPrice(fl);$("mkPr").textContent=(fl?"":"From ")+rs(pr);$("mkPrNote").textContent=fl?"100 g "+fl.toLowerCase()+" bar · made to order":"100 g bar · Dark Rs "+MK_PRICE.Dark+" · others Rs "+MK_BASE;
+    btn.textContent=!fl?"Choose a chocolate to start":!v?"Type your message to add":"Add to order · "+rs(pr);
   }
   document.addEventListener("click",function(e){
     var b=e.target.closest("[data-mkf],[data-mks]");if(!b)return;
@@ -1125,7 +1165,7 @@ drawIz();
   inp.addEventListener("input",sync);
   btn.addEventListener("click",function(){
     var v=inp.value.trim();if(!fl||!v)return;
-    add("mk-bar",[fl+" chocolate",'Text: "'+v+'"'],1);
+    add(MK_PRICE[fl]?"mk-bar-"+fl.toLowerCase():"mk-bar",[fl+" chocolate",'Text: "'+v+'"'],1);
     inp.value="";sync();toast("Your bar is in the order ✓");
   });
   sync();
