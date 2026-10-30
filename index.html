@@ -825,7 +825,7 @@ body.has-cart .fab{display:none}
         </div><div class="err" id="eMode"></div></div>
       <div class="fld" data-fld="addr" id="addrWrap" hidden><label for="fAddr">Delivery address *</label><textarea id="fAddr" name="address" placeholder="Flat / house no., building, street, area, landmark" autocomplete="street-address" maxlength="200"></textarea><div class="err" id="eAddr"></div></div>
       <div class="fld" data-fld="date"><label for="fDate">Date needed *</label><input id="fDate" name="date" type="date"><div class="err" id="eDate"></div></div>
-      <div class="fld"><label for="fNote">Note (optional)</label><textarea id="fNote" name="note" placeholder="Gift message, packing request, etc." maxlength="200"></textarea></div>
+      <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave empty<input id="fHp" name="company" tabindex="-1" autocomplete="off"></label></div><div class="fld"><label for="fNote">Note (optional)</label><textarea id="fNote" name="note" placeholder="Gift message, packing request, etc." maxlength="200"></textarea></div>
     </form>
     <div class="paybox form" id="paybox">
       <h3>Payment (UPI)</h3>
@@ -862,6 +862,8 @@ body.has-cart .fab{display:none}
 "use strict";
 var PHONE="919321041941";
 var UPI="kirangarate44@oksbi",UPI_NAME="Sweetness";
+/* Orders are also sent to the shop's Google Sheet (Apps Script) for an email alert and the Manager app. Empty = off. */
+var ORDER_HOOK="https://script.google.com/macros/s/AKfycbxF-sBxtnULk4ftH00MpK_bc2uNSiuGJ8WVR4_aCIFJXGJ9VNXh0MTPASXZbooaKhazWw/exec";
 var FLAVORS=["Dark","White","Milk","Mango","Rose"];
 /* Box sizes for single flavour chocolates */
 var SIZES=[{k:"6",label:"6 pcs",unit:"6-pc box"},{k:"10",label:"10 pcs · 100 g",unit:"10-pc box (100 g)"},{k:"20",label:"20 pcs · 200 g",unit:"20-pc box (200 g)"}];
@@ -1101,8 +1103,24 @@ $("send").onclick=function(){
   if(v.dt)msg.push("Needed on: "+fmtDate(v.dt));
   var nt=$("fNote").value.trim();if(nt)msg.push("Note: "+nt);
   msg.push("Payment: UPI ("+UPI+")");
+  sendToShop(v,nt);
   window.open(wa(msg.join("\n")),"_blank","noopener");
 };
+
+/* ---------- copy of the order for the shop (Google Sheet + email). Never blocks WhatsApp. ---------- */
+function sendToShop(v,note){
+  if(!ORDER_HOOK)return;
+  try{
+    var items=cart.map(function(l){var it=BY_ID[l.id];return {id:l.id,name:it.name,unit:unitOf(it)||"",flavors:l.flavors||[],qty:l.qty,price:it.price}});
+    var sig=JSON.stringify([items,v.ph,v.md,v.ad,v.dt,note]),last=null;
+    try{last=JSON.parse(sessionStorage.getItem("sweetness-sent")||"null")}catch(e){}
+    /* tapping Send again for the same order reuses its id, so the shop gets it once */
+    var id=last&&last.sig===sig&&Date.now()-last.t<1800000?last.id:"W"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+    try{sessionStorage.setItem("sweetness-sent",JSON.stringify({sig:sig,id:id,t:Date.now()}))}catch(e){}
+    var body=JSON.stringify({action:"web_order",hp:($("fHp")||{}).value||"",order:{id:id,name:v.nm,mobile:v.ph,mode:v.md,address:v.md==="Delivery"?v.ad:"",date:v.dt,note:note,items:items}});
+    fetch(ORDER_HOOK,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"text/plain;charset=utf-8"},body:body}).catch(function(){});
+  }catch(e){}
+}
 
 /* ---------- IZYAN grid ---------- */
 var izFilter="all",izAll=false,IZ_FIRST=12;

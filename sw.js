@@ -1,5 +1,5 @@
 /* Sweetness service worker — offline support for the site. */
-const VERSION = "6a927ca5ec";
+const VERSION = "416b707446";
 const CORE = "sweetness-core-" + VERSION;
 const RUNTIME = "sweetness-runtime";
 const CORE_FILES = [
@@ -66,6 +66,8 @@ self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
+  /* The Manager app (/manager/) has its own service worker; leave it alone. */
+  if (url.origin === self.location.origin && url.pathname.indexOf("/manager/") === 0) return;
   if (req.mode === "navigate" && url.origin === self.location.origin) {
     event.respondWith(handleNavigation(req));
     return;
