@@ -2591,8 +2591,8 @@ var qrcode = function() {
 var APP_KEY = "sb-manager-v1";
 var FLAV_COL = {Dark:"#3a1c12",Milk:"#7b4a2e",White:"#cdb98f",Crispy:"#4a2a1c","Tutti Frutti":"#c98a3a",Mango:"#e3a01f",Rose:"#d9738f","Dry Fruit":"#8a6a3c",Festival:"#b8922a"};
 /* photos from the Sweetness website (same GitHub Pages site, one folder up) */
-var PHOTO={Dark:"../flavours/dark.webp",Milk:"../flavours/milk.webp",White:"../flavours/white.webp",Crispy:"../flavours/crispy.webp","Tutti Frutti":"../flavours/tutti.webp",Mango:"../flavours/mango.webp",Rose:"../flavours/rose.webp","Dry Fruit":"../flavours/dryfruit.webp"};
-function photoFor(p){if(!p)return "";if(p.photo)return p.photo;if(p.category==="Make Your Own")return "../mybar/mb-rutika.webp";return PHOTO[p.flavour]||""}
+var PHOTO={Dark:"../shop/flavours/dark.webp",Milk:"../shop/flavours/milk.webp",White:"../shop/flavours/white.webp",Crispy:"../shop/flavours/crispy.webp","Tutti Frutti":"../shop/flavours/tutti.webp",Mango:"../shop/flavours/mango.webp",Rose:"../shop/flavours/rose.webp","Dry Fruit":"../shop/flavours/dryfruit.webp"};
+function photoFor(p){if(!p)return "";if(p.photo)return p.photo;if(p.category==="Make Your Own")return "../shop/mybar/mb-rutika.webp";return PHOTO[p.flavour]||""}
 var CAT_COL = {"Chocolate Boxes":"#6b3e3a","Chocolate Bars":"#8e4b5a","Make Your Own":"#e86a92","Raw Material":"#7d8a5a","Packaging":"#5a7a8a","Attar 12 ml":"#6a4c2a","Perfume 50 ml":"#4a3a5a","Diwali Faral":"#c46a1f"};
 var PAY_MODES = ["Cash","UPI","Card","Credit"];
 var EXP_CATS = ["Raw material (small)","Packaging","Gas / electricity","Delivery / travel","Rent","Salary / help","Marketing","Equipment","Other"];
@@ -2623,10 +2623,10 @@ var FARAL_LIST=[["shankarpali","Shankarpali","शंकरपाळी"],["ladoo
 function extraProducts(){
   var X=[];
   IZ_LIST.forEach(function(r){
-    X.push({id:"iz-"+r[0]+"-a",sku:"IZ-A-"+r[0].toUpperCase().slice(0,14),name:r[1],size:"Attar 12 ml",category:"Attar 12 ml",unit:"bottle",price:r[5],cost:r[4],stock:0,low:0,track:true,sell:true,recipe:[],photo:"../izyan/"+r[0]+".webp",note:r[2]+" · "+r[3]});
-    X.push({id:"iz-"+r[0]+"-p",sku:"IZ-P-"+r[0].toUpperCase().slice(0,14),name:r[1],size:"Perfume 50 ml",category:"Perfume 50 ml",unit:"bottle",price:r[6],cost:0,stock:0,low:0,track:true,sell:true,recipe:[],photo:"../izyan/"+r[0]+".webp",note:r[2]+" · "+r[3]});
+    X.push({id:"iz-"+r[0]+"-a",sku:"IZ-A-"+r[0].toUpperCase().slice(0,14),name:r[1],size:"Attar 12 ml",category:"Attar 12 ml",unit:"bottle",price:r[5],cost:r[4],stock:0,low:0,track:true,sell:true,recipe:[],photo:"../shop/izyan/"+r[0]+".webp",note:r[2]+" · "+r[3]});
+    X.push({id:"iz-"+r[0]+"-p",sku:"IZ-P-"+r[0].toUpperCase().slice(0,14),name:r[1],size:"Perfume 50 ml",category:"Perfume 50 ml",unit:"bottle",price:r[6],cost:0,stock:0,low:0,track:true,sell:true,recipe:[],photo:"../shop/izyan/"+r[0]+".webp",note:r[2]+" · "+r[3]});
   });
-  FARAL_LIST.forEach(function(f){X.push({id:"fr-"+f[0],sku:"FR-"+f[0].toUpperCase(),name:f[1],size:f[2],category:"Diwali Faral",unit:"pack",price:0,cost:0,stock:0,low:0,track:true,sell:true,recipe:[],photo:"../faral/"+f[0]+".webp"})});
+  FARAL_LIST.forEach(function(f){X.push({id:"fr-"+f[0],sku:"FR-"+f[0].toUpperCase(),name:f[1],size:f[2],category:"Diwali Faral",unit:"pack",price:0,cost:0,stock:0,low:0,track:true,sell:true,recipe:[],photo:"../shop/faral/"+f[0]+".webp"})});
   return X;
 }
 function addExtraProducts(list){
@@ -2679,6 +2679,8 @@ function load(){
   /* one-time additions for older data */
   if(!S.products.some(function(p){return p.name==="Thank-you cards"})){var mo=S.products.reduce(function(a,p){return Math.max(a,p.order||0)},0)+1;S.products.push({id:"p-tycard",sku:"PK-TYC",name:"Thank-you cards",size:"",category:"Packaging",unit:"pcs",price:0,cost:0,stock:0,low:10,track:true,sell:false,recipe:[],order:mo})}
   addExtraProducts(S.products);
+  /* website moved to /shop/: fix saved photo paths */
+  S.products.forEach(function(p){if(p.photo&&/^\.\.\/(flavours|mybar|izyan|faral)\//.test(p.photo))p.photo="../shop/"+p.photo.slice(3)});
 }
 function save(){
   try{localStorage.setItem(APP_KEY,JSON.stringify(S));STORE_OK=true;return true}
@@ -3778,7 +3780,9 @@ PAGE.settings=function(m){
 /* ================= BOOT ================= */
 load();shell();snapAll();render();SYNC.started=cloudOn();startSync();
 window.addEventListener("hashchange",render);
-if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol))window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
+if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol))window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});
+  /* the old website service worker at "/" used to cover this app too: remove it */
+  if(navigator.serviceWorker.getRegistrations)navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){if(r.scope===location.origin+"/")r.unregister()})}).catch(function(){})});
 if(!STORE_OK)toast("This browser is not saving data. Open in normal Chrome (not incognito).");
 
 </script>
