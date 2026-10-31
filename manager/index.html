@@ -2639,15 +2639,15 @@ function addExtraProducts(list){
 function seedProducts(){
   var P=[],o=0;
   function add(x){o++;x.id="p"+String(o).padStart(3,"0");x.order=o;x.cost=x.cost||0;x.stock=x.stock||0;x.low=x.low==null?0:x.low;x.recipe=x.recipe||[];P.push(x)}
-  var BOX=[["Dark",100,200,350],["Milk",80,150,250],["White",80,150,250],["Crispy",80,150,250],["Tutti Frutti",80,150,250],["Mango",80,150,250],["Rose",80,150,250],["Dry Fruit",110,200,300]];
+  var BOX=[["Dark",120,220,370],["Milk",100,170,270],["White",100,170,270],["Crispy",100,170,270],["Tutti Frutti",100,170,270],["Mango",100,170,270],["Rose",100,170,270],["Dry Fruit",130,220,320]];
   var SZ=[["6 pcs","6"],["10 pcs · 100 g","10"],["20 pcs · 200 g","20"]];
   BOX.forEach(function(b){var code=b[0].replace(/[^A-Za-z]/g,"").slice(0,3).toUpperCase();
     SZ.forEach(function(s,i){add({sku:"CB-"+code+"-"+s[1],name:b[0]+" Chocolate",size:s[0],category:"Chocolate Boxes",flavour:b[0],unit:"box",price:b[i+1],track:true,sell:true,low:2})})});
-  [["Dark",200],["White",120],["Milk",120],["Mango",120],["Rose",120]].forEach(function(b){add({sku:"BAR-"+b[0].slice(0,3).toUpperCase(),name:"Single Flavour Bar",size:b[0]+" · 100 g",category:"Chocolate Bars",flavour:b[0],unit:"bar",price:b[1],track:true,sell:true,low:2})});
-  add({sku:"BAR-HNH",name:"Half n Half Bar",size:"100 g · made to order",category:"Chocolate Bars",unit:"bar",price:130,track:false,sell:true});
-  add({sku:"BAR-FES",name:"Festival Special Bar",size:"100 g",category:"Chocolate Bars",flavour:"Festival",unit:"bar",price:180,track:true,sell:true,low:2});
-  add({sku:"MYOB",name:"Make Your Own Bar",size:"100 g · White/Milk/Mango/Rose",category:"Make Your Own",unit:"bar",price:180,track:false,sell:true});
-  add({sku:"MYOB-DRK",name:"Make Your Own Bar",size:"100 g · Dark",category:"Make Your Own",flavour:"Dark",unit:"bar",price:280,track:false,sell:true});
+  [["Dark",220],["White",140],["Milk",140],["Mango",140],["Rose",140]].forEach(function(b){add({sku:"BAR-"+b[0].slice(0,3).toUpperCase(),name:"Single Flavour Bar",size:b[0]+" · 100 g",category:"Chocolate Bars",flavour:b[0],unit:"bar",price:b[1],track:true,sell:true,low:2})});
+  add({sku:"BAR-HNH",name:"Half n Half Bar",size:"100 g · made to order",category:"Chocolate Bars",unit:"bar",price:150,track:false,sell:true});
+  add({sku:"BAR-FES",name:"Festival Special Bar",size:"100 g",category:"Chocolate Bars",flavour:"Festival",unit:"bar",price:200,track:true,sell:true,low:2});
+  add({sku:"MYOB",name:"Make Your Own Bar",size:"100 g · White/Milk/Mango/Rose",category:"Make Your Own",unit:"bar",price:200,track:false,sell:true});
+  add({sku:"MYOB-DRK",name:"Make Your Own Bar",size:"100 g · Dark",category:"Make Your Own",flavour:"Dark",unit:"bar",price:300,track:false,sell:true});
   [["Dark compound","kg"],["Milk compound","kg"],["White compound","kg"],["Mango flavour / colour","bottle"],["Rose flavour / colour","bottle"],["Rice crispies","kg"],["Tutti frutti","kg"],["Kaju (cashew)","kg"],["Badam (almond)","kg"],["Pista","kg"],["Kishmish (raisins)","kg"],["Silver balls / sprinkles","packet"]].forEach(function(m){add({sku:"RM-"+String(o+1),name:m[0],size:"",category:"Raw Material",unit:m[1],price:0,track:true,sell:false})});
   [["6-pc boxes","pcs"],["10-pc boxes","pcs"],["20-pc boxes","pcs"],["Bar wrappers / foil","pcs"],["Ribbons","roll"],["Logo stickers","pcs"],["Thank-you cards","pcs"]].forEach(function(m){add({sku:"PK-"+String(o+1),name:m[0],size:"",category:"Packaging",unit:m[1],price:0,track:true,sell:false})});
   // packaging recipes: each box uses one empty box of its size; each bar uses one wrapper
@@ -2679,6 +2679,15 @@ function load(){
   /* one-time additions for older data */
   if(!S.products.some(function(p){return p.name==="Thank-you cards"})){var mo=S.products.reduce(function(a,p){return Math.max(a,p.order||0)},0)+1;S.products.push({id:"p-tycard",sku:"PK-TYC",name:"Thank-you cards",size:"",category:"Packaging",unit:"pcs",price:0,cost:0,stock:0,low:10,track:true,sell:false,recipe:[],order:mo})}
   addExtraProducts(S.products);
+  /* Nov 2026: chocolates +Rs 20 (attar, perfume, faral unchanged). Only prices still at the old rate change. */
+  if(!(S.settings.priceRev>=1)){var OLD={"CB-DAR":[100,200,350],"CB-MIL":[80,150,250],"CB-WHI":[80,150,250],"CB-CRI":[80,150,250],"CB-TUT":[80,150,250],"CB-MAN":[80,150,250],"CB-ROS":[80,150,250],"CB-DRY":[110,200,300]},
+      OLD1={"BAR-DAR":200,"BAR-WHI":120,"BAR-MIL":120,"BAR-MAN":120,"BAR-ROS":120,"BAR-HNH":130,"BAR-FES":180,"MYOB":180,"MYOB-DRK":280},now=Date.now(),bumped=0;
+    S.products.forEach(function(p){var m=/^(CB-[A-Z]{3})-(6|10|20)$/.exec(p.sku||""),old=m&&OLD[m[1]]?OLD[m[1]][{"6":0,"10":1,"20":2}[m[2]]]:OLD1[p.sku];
+      if(old!=null&&p.price===old){p.price=old+20;p.upd=now;bumped++}});
+    S.settings.priceRev=1;
+    if(bumped){S.meta=S.meta||{};if(!S.meta.fresh){S.meta.pending=true;S.meta.changedAt=now}}
+    save({system:true});
+  }
   /* website moved to /shop/: fix saved photo paths */
   S.products.forEach(function(p){if(p.photo&&/^\.\.\/(flavours|mybar|izyan|faral)\//.test(p.photo))p.photo="../shop/"+p.photo.slice(3)});
 }

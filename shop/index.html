@@ -622,7 +622,7 @@ body.has-cart .fab{display:none}
       <div class="mk rv">
         <div class="mk-prev">
           <div class="mk-bar" id="mkBar" data-f="Milk" aria-hidden="true"><div class="mk-txt ph-txt" id="mkTxt">Your words here</div></div>
-          <div class="mk-price"><b id="mkPr">Rs 180</b><span id="mkPrNote">100 g bar · made to order</span></div>
+          <div class="mk-price"><b id="mkPr">Rs 200</b><span id="mkPrNote">100 g bar · made to order</span></div>
         </div>
         <div class="mk-form">
           <div class="mk-step">
@@ -873,21 +873,21 @@ var MENU=[
   {id:"single",title:"Single flavour chocolates",chip:"Chocolate boxes",note:"6 · 10 · 20 piece boxes",img:"i-cups",
    desc:"Pick a flavour and a box size: 6 pcs, 10 pcs (100 g) or 20 pcs (200 g).",
    items:[
-    {id:"s-dark",name:"Dark Chocolate",img:"dark",sizes:[100,200,350]},
-    {id:"s-milk",name:"Milk Chocolate",img:"milk",sizes:[80,150,250]},
-    {id:"s-white",name:"White Chocolate",img:"white",sizes:[80,150,250]},
-    {id:"s-crispy",name:"Crispy Chocolate",img:"crispy",sizes:[80,150,250]},
-    {id:"s-tutti",name:"Tutti Frutti Chocolate",img:"tutti",sizes:[80,150,250]},
-    {id:"s-mango",name:"Mango Chocolate",img:"mango",sizes:[80,150,250]},
-    {id:"s-rose",name:"Rose Chocolate",img:"rose",sizes:[80,150,250]},
-    {id:"s-dry",name:"Dry Fruit Chocolate",img:"dryfruit",sizes:[110,200,300]}
+    {id:"s-dark",name:"Dark Chocolate",img:"dark",sizes:[120,220,370]},
+    {id:"s-milk",name:"Milk Chocolate",img:"milk",sizes:[100,170,270]},
+    {id:"s-white",name:"White Chocolate",img:"white",sizes:[100,170,270]},
+    {id:"s-crispy",name:"Crispy Chocolate",img:"crispy",sizes:[100,170,270]},
+    {id:"s-tutti",name:"Tutti Frutti Chocolate",img:"tutti",sizes:[100,170,270]},
+    {id:"s-mango",name:"Mango Chocolate",img:"mango",sizes:[100,170,270]},
+    {id:"s-rose",name:"Rose Chocolate",img:"rose",sizes:[100,170,270]},
+    {id:"s-dry",name:"Dry Fruit Chocolate",img:"dryfruit",sizes:[130,220,320]}
    ]},
   {id:"bars",title:"Chocolate bars",chip:"Chocolate bars",note:"Per 100 g bar",img:"i-pattern",
    desc:"One flavour or half n half. Want your own words on a bar? See Make Your Own Bar below.",
    items:[
-    {id:"b-single",name:"Single Flavour Bar",price:120,pick:1,flavourPrice:{Dark:200}},
-    {id:"b-half",name:"Half n Half Bar",price:130,pick:2,exclude:["Dark"]},
-    {id:"b-festival",name:"Festival Special Chocolate Bar",price:180}
+    {id:"b-single",name:"Single Flavour Bar",price:140,pick:1,flavourPrice:{Dark:220}},
+    {id:"b-half",name:"Half n Half Bar",price:150,pick:2,exclude:["Dark"]},
+    {id:"b-festival",name:"Festival Special Chocolate Bar",price:200}
    ]}
 ];
 var UNIT={bars:"100 g bar"};
@@ -904,7 +904,7 @@ IZ.forEach(function(r){
   BY_ID["iz-"+r[0]+"-a"]={id:"iz-"+r[0]+"-a",name:"IZYAN "+r[1]+" Attar",price:r[4],cat:"izyan",unit:"12 ml attar"};
   BY_ID["iz-"+r[0]+"-p"]={id:"iz-"+r[0]+"-p",name:"IZYAN "+r[1]+" Perfume",price:r[5],cat:"izyan",unit:"50 ml perfume"};
 });
-var MK_PRICE={Dark:280},MK_BASE=180;
+var MK_PRICE={Dark:300},MK_BASE=200;
 BY_ID["mk-bar"]={id:"mk-bar",name:"Make Your Own Bar",price:MK_BASE,cat:"make",unit:"100 g bar"};
 Object.keys(MK_PRICE).forEach(function(f){BY_ID["mk-bar-"+f.toLowerCase()]={id:"mk-bar-"+f.toLowerCase(),name:"Make Your Own Bar",price:MK_PRICE[f],cat:"make",unit:"100 g bar"}});
 function mkPrice(f){return MK_PRICE[f]||MK_BASE}
