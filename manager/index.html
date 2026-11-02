@@ -3150,7 +3150,7 @@ function viewOrder(id){
 PAGE.products=function(m){
   VIEW.prodFilter=VIEW.prodFilter||"all";
   var cats=uniq(S.products.map(function(p){return p.category}));
-  m.innerHTML='<div class="ph"><h2>Products &amp; Stock</h2><span class="sp"></span><button class="btn ghost sm" type="button" onclick="exportProductsCSV()">Export CSV</button><button class="btn ghost sm" type="button" onclick="stockHistory()">Stock history</button><button class="btn acc" type="button" onclick="productForm()">+ Add product</button></div>'+
+  m.innerHTML='<div class="ph"><h2>Products &amp; Stock</h2><span class="sp"></span><button class="btn ghost sm" type="button" onclick="exportProductsCSV()">Export CSV</button><button class="btn ghost sm" type="button" onclick="stockHistory()">Stock history</button><button class="btn ghost sm" type="button" onclick="bulkStockForm()">📦 Bulk stock</button><button class="btn acc" type="button" onclick="productForm()">+ Add product</button></div>'+
    '<div class="stack"><div class="row"><input class="grow" id="pQ" type="search" placeholder="Search name, flavour, SKU" value="'+esc(VIEW.prodQ||"")+'"><select id="pCat" style="width:auto"><option value="">All categories</option>'+cats.map(function(c){return '<option '+(VIEW.prodCat===c?"selected":"")+'>'+esc(c)+'</option>'}).join("")+'</select></div>'+
    '<div class="chips" id="pF">'+[["all","All"],["low","Low / out"],["sell","For sale"],["raw","Raw & packing"]].map(function(x){return '<button class="chip '+(VIEW.prodFilter===x[0]?"on":"")+'" data-f="'+x[0]+'" type="button">'+x[1]+'</button>'}).join("")+'</div><div id="pList"></div></div>';
   function draw(){var q=(VIEW.prodQ||"").toLowerCase(),f=VIEW.prodFilter,cat=VIEW.prodCat;
@@ -3202,6 +3202,31 @@ function stockForm(p){
     $("#sOk",b).onclick=function(){var q=parseFloat($("#sq",b).value);if(!(q>=0)||(mode!=="set"&&q===0)){$("#sE",b).textContent="Enter a quantity.";return}
       if(mode==="remove"&&q>p.stock){$("#sE",b).textContent="Only "+qf(p.stock)+" in stock.";return}
       var ch=mode==="set"?r2(q-p.stock):mode==="add"?q:-q;p.stock=r2(p.stock+ch);logStock(p.id,ch,$("#sr",b).value);save();closeModal();render();toast("Stock now "+qf(p.stock)+" "+p.unit)};
+  }});
+}
+/* Set or add the same quantity for every tracked product in the chosen categories (opening stock, weekly count). */
+function bulkStockForm(){
+  var cats=uniq(S.products.filter(function(p){return p.track}).map(function(p){return p.category}));
+  var DEF={"Chocolate Boxes":1,"Chocolate Bars":1};
+  openModal("📦 Bulk stock",'<p class="sub">Same quantity for every product in the ticked categories. Made-to-order items (Half n Half, Make Your Own) have no stock and are skipped.</p>'+
+   '<div class="lbl" style="margin-top:10px">Categories</div><div class="stack" id="bC" style="gap:6px;margin-top:6px">'+cats.map(function(c){var n=S.products.filter(function(p){return p.track&&p.category===c}).length;return '<label class="chk"><input type="checkbox" value="'+esc(c)+'" '+(DEF[c]?"checked":"")+'> '+esc(c)+' <span class="sub">('+n+')</span></label>'}).join("")+'</div>'+
+   '<div class="seg" id="bM" style="margin:12px 0"><button type="button" class="on" data-m="set">Set count to</button><button type="button" data-m="add">Add</button></div>'+
+   '<label class="f"><span id="bQL">Count for each product</span><input id="bQ" type="number" min="0" step="1" inputmode="numeric" value="4"></label>'+
+   '<p class="sub" id="bP" style="margin-top:10px"></p><div class="err" id="bE"></div><div class="mf"><button class="btn" id="bOk" type="button">Apply</button></div>',{mount:function(b){
+    var mode="set";
+    function picked(){var on={};$$("#bC input",b).forEach(function(x){if(x.checked)on[x.value]=1});return S.products.filter(function(p){return p.track&&on[p.category]})}
+    function prev(){var q=parseFloat($("#bQ",b).value),list=picked();$("#bQL",b).textContent=mode==="set"?"Count for each product":"Add to each product";
+      if(!list.length){$("#bP",b).textContent="Tick at least one category.";return}
+      if(!(q>=0)){$("#bP",b).textContent="Enter a quantity.";return}
+      var ch=list.filter(function(p){return mode==="set"?p.stock!==q:q>0}).length;
+      $("#bP",b).innerHTML="<b>"+list.length+"</b> products · <b>"+ch+"</b> will change"+(mode==="set"?" to <b>"+qf(q)+"</b> each.":" (+"+qf(q)+" each).")}
+    $("#bM",b).onclick=function(e){var x=e.target.closest("button");if(!x)return;mode=x.dataset.m;$$("#bM button",b).forEach(function(y){y.classList.toggle("on",y===x)});prev()};
+    $("#bC",b).onchange=prev;$("#bQ",b).oninput=prev;prev();
+    $("#bOk",b).onclick=function(){var q=parseFloat($("#bQ",b).value),list=picked(),E=$("#bE",b);
+      if(!list.length){E.textContent="Tick at least one category.";return}
+      if(!(q>=0)||Math.round(q)!==q||(mode==="add"&&q===0)){E.textContent="Enter a whole number.";return}
+      var n=0;list.forEach(function(p){var ch=mode==="set"?r2(q-p.stock):q;if(!ch)return;p.stock=r2(p.stock+ch);logStock(p.id,ch,mode==="set"?"Stock count":"Made / found extra","bulk");n++});
+      save();closeModal();render();toast(n?n+" products updated ✓":"Nothing to change")};
   }});
 }
 function makeForm(p){
