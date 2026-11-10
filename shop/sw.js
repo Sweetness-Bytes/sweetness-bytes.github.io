@@ -1,5 +1,5 @@
 /* Sweetness service worker — offline support for the site. */
-const VERSION = "cf1294b73c";
+const VERSION = "b5d6c4b16b";
 const CORE = "sweetness-shop-core-" + VERSION;
 const RUNTIME = "sweetness-shop-runtime";
 const CORE_FILES = [
